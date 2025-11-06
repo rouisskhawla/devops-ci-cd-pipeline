@@ -7,7 +7,7 @@ pipeline {
       steps {
         checkout([
           $class: 'GitSCM',
-          branches: [[name: '*/main']],
+          branches: [[name: 'main']],
           userRemoteConfigs: [[ 
             url: 'git@github.com:rouisskhawla/devops-ci-cd-pipeline.git',
             credentialsId: 'github'
