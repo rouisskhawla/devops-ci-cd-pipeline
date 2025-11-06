@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage (clone github repository){
+    stage (Clone Github Repository){
       steps {
         cleanWs()
         checkout([$class: 'GitSCM', branches: [[name: '/*main']], userRemoteConfigs: [[ url: 'git@github.com:rouisskhawla/devops-ci-cd-pipeline.git', credentialsId: 'github' ]]])
