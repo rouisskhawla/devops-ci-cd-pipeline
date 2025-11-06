@@ -1,0 +1,28 @@
+---
+- name: Deploy app to Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Ensure kubeconfig works
+      command: kubectl get nodes --kubeconfig={{ kubeconfig }}
+
+    - name: Delete existing deployment
+      command: kubectl delete -f k8s/deployment.yaml --kubeconfig={{ kubeconfig }}
+      ignore_errors: yes
+
+    - name: Delete existing service
+      command: kubectl delete -f k8s/service.yaml --kubeconfig={{ kubeconfig }}
+      ignore_errors: yes
+
+    - name: Wait for 20 seconds before applying new configuration
+      pause:
+        seconds: 20
+
+    - name: Apply deployment configuration
+      command: kubectl apply -f k8s/deployment.yaml --kubeconfig={{ kubeconfig }}
+
+    - name: Apply service configuration
+      command: kubectl apply -f k8s/service.yaml --kubeconfig={{ kubeconfig }}
+
+    - name: Get Pods status
+      command: kubectl get pods --kubeconfig={{ kubeconfig }}

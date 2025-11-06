@@ -1,0 +1,7 @@
+version: '2'
+services:
+    devops-service: 
+        image: khawlarouiss/devops:latest
+        ports:
+            - "8082:8082" 
+        restart: always

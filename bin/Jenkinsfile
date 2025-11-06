@@ -1,0 +1,109 @@
+pipeline {
+    
+    agent any
+
+    // For Deploy to Kubernetes Cluster Stage
+    environment {
+        KUBECONFIG = credentials('kubeconfig')
+    }
+    
+    stages{
+    
+        stage('Clone GitLab Repo') {
+            steps {
+                cleanWs()
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'git@gitlab.com:rouis.khawla09/devops.git', credentialsId: 'Private-SSH-Key']]])
+            }
+        }
+
+        stage ('Maven install') {
+            tools { 
+                maven 'Maven 3.9.5' 
+                jdk 'jdk17' 
+            }
+            steps {
+                sh 'mvn install -DskipTests';
+                sh 'mvn test'
+            }
+        }
+        
+        stage('Maven clean package'){
+            tools { 
+                maven 'Maven 3.9.5' 
+                jdk 'jdk17' 
+            }
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Docker Login'){
+            steps {
+                echo "Test Docker Login ";
+                script {
+                    withCredentials([
+                        usernamePassword(credentialsId: 'dockerlogin', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')
+                        ]) {
+                            sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
+                    }
+                }
+            }
+        }
+            
+        stage('Build & Push Image '){
+            steps {
+                echo "Build Docker image ";
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_token') {
+                        def customImage = docker.build('khawlarouiss/devops:latest', '.')
+                        customImage.push()
+                    }
+                }
+            }
+        }
+
+        // stage('Deploy Application To Kubernetes and Minikube') {
+        //     steps {
+        //         withKubeConfig([
+        //             credentialsId: 'KUBECONFIG',
+        //             serverUrl: 'https://192.168.49.2:8443'
+        //             ]) {
+        //                 sh 'kubectl version'
+        //                 sh 'kubectl config use-context minikube'
+        //                 sh 'kubectl apply -f k8s/deployment.yaml'
+        //                 sh 'kubectl apply -f k8s/service.yaml'
+        //                 sh 'kubectl apply -f k8s/ingress.yaml'
+        //             }
+        //     }  
+        // }
+
+        // stage('Deploy to Kubernetes Cluster') {
+        //     steps {
+        //         script {
+        //             withKubeConfig([credentialsId: 'kubeconfig']) {
+        //                 sh 'kubectl delete -f k8s/deployment.yaml'
+        //                 sh 'kubectl delete -f k8s/service.yaml'
+        //                 sh 'kubectl get pods'
+        //                 sh 'sleep 20'
+        //                 sh 'kubectl apply -f k8s/deployment.yaml'
+        //                 sh 'kubectl apply -f k8s/service.yaml'
+        //                 sh 'kubectl get pods'
+        //             }
+        //         }
+        //     }
+        // }
+
+        stage('Deploy with Ansible to Kubernetes') {
+            steps {
+                script {
+                    withKubeConfig([credentialsId: 'kubeconfig']) {
+                        sh '''
+                            ansible-playbook -i localhost, -e kubeconfig=$KUBECONFIG deploy.yml
+                        '''
+                    }
+                }
+            }
+        }
+    }
+
+}
