@@ -1,9 +1,10 @@
 pipeline {
   agent any
+  
   stages {
+    
     stage ('Clone Github Repository'){
       steps {
-        cleanWs()
         checkout([
           $class: 'GitSCM',
           branches: [[name: '*/main']],
@@ -14,5 +15,13 @@ pipeline {
         ])
       }
     }
+    
   }
+  
+  post {
+    always {
+        cleanWs()
+    } 
+  }
+  
 }
