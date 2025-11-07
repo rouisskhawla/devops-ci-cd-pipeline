@@ -1,5 +1,11 @@
 pipeline {
   agent any
+  
+  environment {
+      DOCKER_REGISTRY = 'https://index.docker.io/v1/'
+      REPO_NAME = 'khawlarouiss/devops-ci-cd-pipeline'
+      DOCKER_CREDENTIALS_ID = 'dockerlogin'
+  }
 
   stages {
     stage('Clone Github Repository') {
@@ -41,28 +47,33 @@ pipeline {
           sh 'mvn test'
       }
     }
-    stage('Docker Login'){
+	  stage('Docker Login') {
       steps {
         script {
-          withCredentials([
-            usernamePassword(credentialsId: 'dockerlogin', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')
-          ]) {
-              sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
-              }
-        }
-      }
-    }  
-    stage('Build & Push Image '){
-      steps {
-        script {
-          docker.withRegistry('https://registry.hub.docker.com', 'dockerlogin') {
-            def customImage = docker.build('khawlarouiss/devops-ci-cd-pipeline:latest', '.')
-            customImage.push()
+          withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            sh """
+                echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin
+            """
           }
         }
       }
     }
-    
+    stage('Build Docker Image') {
+      steps {
+        script {
+            docker.build("${REPO_NAME}:latest", "-f Dockerfile .")
+        }
+      }
+    }
+    stage('Push Image to Docker Registry') {
+      steps {
+        script {
+          docker.withRegistry("${DOCKER_REGISTRY}", "${DOCKER_CREDENTIALS_ID}") {
+            docker.image("${REPO_NAME}:latest").push('latest')
+          }
+        }            
+      }
+    }
   }
 
   post {
