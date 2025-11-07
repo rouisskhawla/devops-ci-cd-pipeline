@@ -41,7 +41,28 @@ pipeline {
           sh 'mvn test'
       }
     }
-
+    stage('Docker Login'){
+      steps {
+        script {
+          withCredentials([
+            usernamePassword(credentialsId: 'dockerlogin', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')
+          ]) {
+              sh 'docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"'
+              }
+        }
+      }
+    }  
+    stage('Build & Push Image '){
+      steps {
+        script {
+          docker.withRegistry('https://registry.hub.docker.com', 'dockerlogin') {
+            def customImage = docker.build('khawlarouiss/devops-ci-cd-pipeline:latest', '.')
+            customImage.push()
+          }
+        }
+      }
+    }
+    
   }
 
   post {
