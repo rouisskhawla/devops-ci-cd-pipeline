@@ -1,11 +1,12 @@
 pipeline {
-  agent any
-  
-  environment {
-      DOCKER_REGISTRY = 'https://index.docker.io/v1/'
-      REPO_NAME = 'khawlarouiss/devops-ci-cd-pipeline'
-      DOCKER_CREDENTIALS_ID = 'dockerlogin'
-  }
+	agent any
+	
+	environment {
+		DOCKER_REGISTRY = 'https://index.docker.io/v1/'
+		REPO_NAME = 'khawlarouiss/devops-ci-cd-pipeline'
+		DOCKER_CREDENTIALS_ID = 'dockerlogin'
+		SSH_CREDENTIALS_ID = 'ssh-key-staging-vm'
+	  }
 
   stages {
     stage('Clone Github Repository') {
@@ -74,6 +75,29 @@ pipeline {
         }            
       }
     }
+  
+	stage('Deploy') {
+		steps {
+			script {
+				withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+					withEnv(["STAGING_VM=${env.STAGING_VM}"]) {
+						sshagent([SSH_CREDENTIALS_ID]) {
+							sh """
+								scp -o StrictHostKeyChecking=no docker-compose.yml \${STAGING_VM}:devops-ci-cd-pipeline
+								ssh -o StrictHostKeyChecking=no ${STAGING_VM} << EOF
+								echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin
+								cd devops-ci-cd-pipeline
+								docker-compose -f docker-compose.yml pull
+								docker-compose -f docker-compose.yml down
+								docker-compose -f docker-compose.yml up -d
+EOF
+                                """
+						}
+					}
+				}
+			}
+		}    
+	}
   }
 
   post {
