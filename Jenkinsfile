@@ -14,24 +14,34 @@ pipeline {
         ])
       }
     }
-    stage('Maven install') {
+    stage('Maven Install') {
       tools {
         maven 'Maven 3.9.11'
         jdk 'jdk17'
       }
       steps {
-        sh 'mvn install -DskipTests'
+        sh 'mvn clean install -DskipTests'
       }
     }
-    stage('Maven clean package') {
+    stage('Maven Package') {
       tools {
         maven 'Maven 3.9.11'
         jdk 'jdk17'
       }
       steps {
-        sh 'mvn clean package'
+        sh 'mvn clean package -DskipTests'
       }
     }
+    stage ('Maven Test') {
+      tools { 
+          maven 'Maven 3.9.5' 
+          jdk 'jdk17' 
+      }
+      steps {
+          sh 'mvn test'
+      }
+    }
+
   }
 
   post {
