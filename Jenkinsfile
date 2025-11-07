@@ -34,7 +34,7 @@ pipeline {
     }
     stage ('Maven Test') {
       tools { 
-          maven 'Maven 3.9.5' 
+          maven 'Maven 3.9.11' 
           jdk 'jdk17' 
       }
       steps {
