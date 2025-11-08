@@ -21,13 +21,14 @@ pipeline {
         ])
       }
     }
-    stage('Maven Install') {
+    stage('Maven Test') {
       tools {
         maven 'Maven 3.9.11'
         jdk 'jdk17'
       }
       steps {
         sh 'mvn clean install -DskipTests'
+		sh 'mvn test'
       }
     }
     stage('Maven Package') {
@@ -39,16 +40,7 @@ pipeline {
         sh 'mvn clean package -DskipTests'
       }
     }
-    stage ('Maven Test') {
-      tools { 
-          maven 'Maven 3.9.11' 
-          jdk 'jdk17' 
-      }
-      steps {
-          sh 'mvn test'
-      }
-    }
-	  stage('Docker Login') {
+	stage('Docker Login') {
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
@@ -59,23 +51,17 @@ pipeline {
         }
       }
     }
-    stage('Build Docker Image') {
-      steps {
-        script {
-            docker.build("${REPO_NAME}:latest", "-f Dockerfile .")
-        }
-      }
+    stage('Build and Push Image to Docker Registry') {
+    	steps {
+    		script {
+				docker.withRegistry("${DOCKER_REGISTRY}", "${DOCKER_CREDENTIALS_ID}") 
+				{
+					docker.build("${REPO_NAME}:latest", "-f Dockerfile .")
+					docker.image("${REPO_NAME}:latest").push('latest')
+				}
+	        }
+    	}
     }
-    stage('Push Image to Docker Registry') {
-      steps {
-        script {
-          docker.withRegistry("${DOCKER_REGISTRY}", "${DOCKER_CREDENTIALS_ID}") {
-            docker.image("${REPO_NAME}:latest").push('latest')
-          }
-        }            
-      }
-    }
-  
 	stage('Deploy') {
 		steps {
 			script {
