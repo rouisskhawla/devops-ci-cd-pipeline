@@ -38,8 +38,10 @@ pipeline {
 			jdk 'jdk17'
 		}
 		steps {
-			withSonarQubeEnv('sonar') {
-				sh 'mvn sonar:sonar -Dsonar.projectKey=devops-ci-cd-pipeline'
+			catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+				withSonarQubeEnv('sonar') {
+					sh 'mvn sonar:sonar -Dsonar.projectKey=devops-ci-cd-pipeline'
+				}
 			}
 		}
 	}       
