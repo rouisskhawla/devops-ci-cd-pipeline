@@ -64,6 +64,7 @@ pipeline {
     }
     stage('Build and Push Image to Docker Registry') {
     	steps {
+			input "Do you want to build and push the Docker image?"
     		script {
 				docker.withRegistry("${DOCKER_REGISTRY}", "${DOCKER_CREDENTIALS_ID}") 
 				{
@@ -75,6 +76,7 @@ pipeline {
     }
 	stage('Deploy') {
 		steps {
+			input "Do you want to deploy to staging environment?"
 			script {
 				withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
 					withEnv(["STAGING_VM=${env.STAGING_VM}"]) {
