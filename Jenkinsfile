@@ -31,6 +31,17 @@ pipeline {
 		sh 'mvn test'
       }
     }
+	stage('SonarQube Analysis') {
+		tools {
+			maven 'Maven 3.9.11'
+			jdk 'jdk17'
+		}
+		steps {
+			withSonarQubeEnv('sonar') {
+				sh 'mvn sonar:sonar -Dsonar.projectKey=devops-ci-cd-pipeline'
+			}
+		}
+	}       
     stage('Maven Package') {
       tools {
         maven 'Maven 3.9.11'
