@@ -6,6 +6,7 @@ pipeline {
 		REPO_NAME = 'khawlarouiss/devops-ci-cd-pipeline'
 		DOCKER_CREDENTIALS_ID = 'dockerlogin'
 		SSH_CREDENTIALS_ID = 'ssh-key-staging-vm'
+		NEXUS_CREDENTIALS = 'nexus-credentials'
 	  }
 
   stages {
@@ -50,6 +51,24 @@ pipeline {
       steps {
         sh 'mvn clean package -DskipTests'
       }
+    }
+	stage('Maven Deploy To Nexus') {
+		tools {
+			maven 'Maven 3.9.11'
+			jdk 'jdk17'
+		}
+		steps {
+			input "Do you want to deploy Artifact to Nexus?"
+			withCredentials([usernamePassword(
+				credentialsId: env.NEXUS_CREDENTIALS,
+				usernameVariable: 'NEXUS_USER',
+				passwordVariable: 'NEXUS_PASS'
+			)]) {
+				configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+					sh 'mvn clean deploy -s $MAVEN_SETTINGS'
+				}
+			}
+		}
     }
 	stage('Docker Login') {
       steps {
