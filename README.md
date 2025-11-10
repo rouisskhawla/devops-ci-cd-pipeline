@@ -46,7 +46,7 @@ The pipeline is configured to run on multiple VMs:
    Builds a Docker image of the Spring Boot application and pushes it to Docker Hub.
 
 8. **Deploy to Staging Environment** *(manual confirmation required)*  
-   Copies the docker-compose.yml to the staging VM and runs Docker Compose to pull the latest image and restart the application.
+   Connects using SHH, Copies the docker-compose.yml to the staging VM and runs Docker Compose to pull the latest image and restart the application.
 
 ---
 
