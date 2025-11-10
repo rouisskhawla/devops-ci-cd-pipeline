@@ -78,7 +78,7 @@ The pipeline can be triggered automatically on changes to the main branch or man
 ---
 
 ## References
-- 
+- For detailed logs, screenshots, and architecture diagrams, please refer to the [docs folder](docs/).
 
 ---
 
