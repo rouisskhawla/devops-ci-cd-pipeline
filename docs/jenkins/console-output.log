@@ -1,0 +1,2349 @@
+Started by user khawla rouis
+Obtained Jenkinsfile from git git@github.com:username/devops-ci-cd-pipeline.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/devops-ci-cd
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential github
+Cloning the remote Git repository
+Cloning repository git@github.com:username/devops-ci-cd-pipeline.git
+ > git init /var/lib/jenkins/workspace/devops-ci-cd # timeout=10
+Fetching upstream changes from git@github.com:username/devops-ci-cd-pipeline.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+using GIT_SSH to set credentials 
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- git@github.com:username/devops-ci-cd-pipeline.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url git@github.com:username/devops-ci-cd-pipeline.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision c714623720d90d4230916bcfac14d7db2f6a05b6 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f c714623720d90d4230916bcfac14d7db2f6a05b6 # timeout=10
+Commit message: "Enhance README with detailed CI/CD pipeline information"
+ > git rev-list --no-walk 52e6d1de653f6ae4c4c48b2ae8e7ad0e3f04f147 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone Github Repository)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+using credential github
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/devops-ci-cd/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url git@github.com:username/devops-ci-cd-pipeline.git # timeout=10
+Fetching upstream changes from git@github.com:username/devops-ci-cd-pipeline.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+using GIT_SSH to set credentials 
+Verifying host key using known hosts file
+ > git fetch --tags --force --progress -- git@github.com:username/devops-ci-cd-pipeline.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse origin/main^{commit} # timeout=10
+Checking out Revision c714623720d90d4230916bcfac14d7db2f6a05b6 (origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f c714623720d90d4230916bcfac14d7db2f6a05b6 # timeout=10
+Commit message: "Enhance README with detailed CI/CD pipeline information"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Maven Test)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn clean install -DskipTests
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.devops:devops-ci-cd-pipeline >------------------
+[INFO] Building devops-ci-cd-pipeline 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ devops-ci-cd-pipeline ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ devops-ci-cd-pipeline ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ devops-ci-cd-pipeline ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 5 source files with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ devops-ci-cd-pipeline ---
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/devops-ci-cd/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ devops-ci-cd-pipeline ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ devops-ci-cd-pipeline ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ devops-ci-cd-pipeline ---
+[INFO] Building jar: /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.3.0:repackage (repackage) @ devops-ci-cd-pipeline ---
+[INFO] Replacing main artifact /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ devops-ci-cd-pipeline ---
+[INFO] Installing /var/lib/jenkins/workspace/devops-ci-cd/pom.xml to /var/lib/jenkins/.m2/repository/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.pom
+[INFO] Installing /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar to /var/lib/jenkins/.m2/repository/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.644 s
+[INFO] Finished at: 2025-11-10T11:44:24Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] sh
++ mvn test
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.devops:devops-ci-cd-pipeline >------------------
+[INFO] Building devops-ci-cd-pipeline 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ devops-ci-cd-pipeline ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ devops-ci-cd-pipeline ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ devops-ci-cd-pipeline ---
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/devops-ci-cd/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ devops-ci-cd-pipeline ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ devops-ci-cd-pipeline ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.devops.demo.DemoApplicationTests
+11:44:30.841 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.devops.demo.DemoApplicationTests]: DemoApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:44:31.011 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.devops.demo.DemoApplication for test class com.devops.demo.DemoApplicationTests
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2025-11-10T11:44:31.666Z  INFO 9265 --- [           main] com.devops.demo.DemoApplicationTests     : Starting DemoApplicationTests using Java 17.0.16 with PID 9265 (started by jenkins in /var/lib/jenkins/workspace/devops-ci-cd)
+2025-11-10T11:44:31.671Z  INFO 9265 --- [           main] com.devops.demo.DemoApplicationTests     : No active profile set, falling back to 1 default profile: "default"
+2025-11-10T11:44:33.955Z  INFO 9265 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-10T11:44:35.292Z  INFO 9265 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2025-11-10T11:44:35.372Z  INFO 9265 --- [           main] com.devops.demo.DemoApplicationTests     : Started DemoApplicationTests in 4.127 seconds (process running for 5.879)
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.252 s -- in com.devops.demo.DemoApplicationTests
+[INFO] Running com.devops.demo.service.CustomerServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.510 s -- in com.devops.demo.service.CustomerServiceTest
+[INFO] Running com.devops.demo.controller.CustomerControllerTest
+2025-11-10T11:44:37.230Z  INFO 9265 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.devops.demo.controller.CustomerControllerTest]: CustomerControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-11-10T11:44:37.314Z  INFO 9265 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.devops.demo.DemoApplication for test class com.devops.demo.controller.CustomerControllerTest
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2025-11-10T11:44:37.453Z  INFO 9265 --- [           main] c.d.d.controller.CustomerControllerTest  : Starting CustomerControllerTest using Java 17.0.16 with PID 9265 (started by jenkins in /var/lib/jenkins/workspace/devops-ci-cd)
+2025-11-10T11:44:37.454Z  INFO 9265 --- [           main] c.d.d.controller.CustomerControllerTest  : No active profile set, falling back to 1 default profile: "default"
+2025-11-10T11:44:37.875Z  INFO 9265 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-11-10T11:44:38.618Z  INFO 9265 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-11-10T11:44:38.618Z  INFO 9265 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-11-10T11:44:38.629Z  INFO 9265 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2025-11-10T11:44:38.650Z  INFO 9265 --- [           main] c.d.d.controller.CustomerControllerTest  : Started CustomerControllerTest in 1.33 seconds (process running for 9.157)
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.906 s -- in com.devops.demo.controller.CustomerControllerTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.895 s
+[INFO] Finished at: 2025-11-10T11:44:39Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube Analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] catchError
+[Pipeline] {
+[Pipeline] withSonarQubeEnv
+Injecting SonarQube environment variables using the configuration: sonar
+[Pipeline] {
+[Pipeline] sh
++ mvn sonar:sonar -Dsonar.projectKey=devops-ci-cd-pipeline
+[INFO] Scanning for projects...
+[WARNING] The artifact org.codehaus.mojo:sonar-maven-plugin:jar:4.0.0.4121 has been relocated to org.sonarsource.scanner.maven:sonar-maven-plugin:jar:4.0.0.4121: SonarQube plugin was moved to SonarSource organisation
+[INFO] 
+[INFO] ------------------< com.devops:devops-ci-cd-pipeline >------------------
+[INFO] Building devops-ci-cd-pipeline 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- sonar:4.0.0.4121:sonar (default-cli) @ devops-ci-cd-pipeline ---
+[WARNING] 11:44:45.271 Using an unspecified version instead of an explicit plugin version may introduce breaking analysis changes at an unwanted time. It is highly recommended to use an explicit version, e.g. 'org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121'.
+[INFO] 11:44:45.290 Java 17.0.16 Ubuntu (64-bit)
+[INFO] 11:44:45.290 Linux 6.14.0-35-generic (amd64)
+[INFO] 11:44:45.754 User cache: /var/lib/jenkins/.sonar/cache
+[INFO] 11:44:45.894 Communicating with SonarQube Server 9.9.8.100196
+[INFO] 11:44:45.929 Default locale: "en_US", source code encoding: "UTF-8"
+[INFO] 11:44:47.249 Load global settings
+[INFO] 11:44:47.609 Load global settings (done) | time=361ms
+[INFO] 11:44:47.614 Server id: 147B411E-AZpoa4nNNNKRTpWlQmJf
+[INFO] 11:44:47.619 User cache: /var/lib/jenkins/.sonar/cache
+[INFO] 11:44:47.637 Load/download plugins
+[INFO] 11:44:47.637 Load plugins index
+[INFO] 11:44:47.810 Load plugins index (done) | time=173ms
+[INFO] 11:44:48.171 Load/download plugins (done) | time=534ms
+[INFO] 11:44:49.637 Process project properties
+[INFO] 11:44:49.647 Process project properties (done) | time=10ms
+[INFO] 11:44:49.650 Execute project builders
+[INFO] 11:44:49.652 Execute project builders (done) | time=2ms
+[INFO] 11:44:49.655 Project key: devops-ci-cd-pipeline
+[INFO] 11:44:49.655 Base dir: /var/lib/jenkins/workspace/devops-ci-cd
+[INFO] 11:44:49.656 Working dir: /var/lib/jenkins/workspace/devops-ci-cd/target/sonar
+[INFO] 11:44:49.665 Load project settings for component key: 'devops-ci-cd-pipeline'
+[INFO] 11:44:49.866 Load project settings for component key: 'devops-ci-cd-pipeline' (done) | time=201ms
+[INFO] 11:44:50.223 Auto-configuring with CI 'Jenkins'
+[INFO] 11:44:50.226 Load quality profiles
+[INFO] 11:44:51.198 Load quality profiles (done) | time=972ms
+[INFO] 11:44:51.203 Load active rules
+[INFO] 11:45:02.415 Load active rules (done) | time=11212ms
+[INFO] 11:45:02.421 Load analysis cache
+[INFO] 11:45:02.518 Load analysis cache (267 bytes) | time=93ms
+[INFO] 11:45:02.660 Load project repositories
+[INFO] 11:45:02.789 Load project repositories (done) | time=129ms
+[INFO] 11:45:02.869 Indexing files...
+[INFO] 11:45:02.871 Project configuration:
+[INFO] 11:45:03.233 9 files indexed
+[INFO] 11:45:03.236 0 files ignored because of scm ignore settings
+[INFO] 11:45:03.237 Quality profile for java: Sonar way
+[INFO] 11:45:03.237 Quality profile for xml: Sonar way
+[INFO] 11:45:03.238 ------------- Run sensors on module devops-ci-cd-pipeline
+[INFO] 11:45:03.608 Load metrics repository
+[INFO] 11:45:03.716 Load metrics repository (done) | time=108ms
+[INFO] 11:45:08.249 Sensor JavaSensor [java]
+[INFO] 11:45:08.287 Configured Java source version (sonar.java.source): 17
+[INFO] 11:45:08.303 JavaClasspath initialization
+[INFO] 11:45:08.317 JavaClasspath initialization (done) | time=14ms
+[INFO] 11:45:08.317 JavaTestClasspath initialization
+[INFO] 11:45:08.324 JavaTestClasspath initialization (done) | time=7ms
+[INFO] 11:45:08.375 Server-side caching is enabled. The Java analyzer will not try to leverage data from a previous analysis.
+[INFO] 11:45:08.381 Using ECJ batch to parse 5 Main java source files with batch size 51 KB.
+[INFO] 11:45:09.351 Starting batch processing.
+[INFO] 11:45:10.287 The Java analyzer cannot skip unchanged files in this context. A full analysis is performed for all files.
+[INFO] 11:45:11.834 100% analyzed
+[INFO] 11:45:11.835 Batch processing: Done.
+[INFO] 11:45:11.837 Did not optimize analysis for any files, performed a full analysis for all 5 files.
+[INFO] 11:45:11.841 Using ECJ batch to parse 3 Test java source files with batch size 51 KB.
+[INFO] 11:45:11.845 Starting batch processing.
+[INFO] 11:45:12.094 100% analyzed
+[INFO] 11:45:12.095 Batch processing: Done.
+[INFO] 11:45:12.103 Did not optimize analysis for any files, performed a full analysis for all 3 files.
+[INFO] 11:45:12.103 No "Generated" source files to scan.
+[INFO] 11:45:12.103 Sensor JavaSensor [java] (done) | time=3854ms
+[INFO] 11:45:12.104 Sensor JaCoCo XML Report Importer [jacoco]
+[INFO] 11:45:12.106 'sonar.coverage.jacoco.xmlReportPaths' is not defined. Using default locations: target/site/jacoco/jacoco.xml,target/site/jacoco-it/jacoco.xml,build/reports/jacoco/test/jacocoTestReport.xml
+[INFO] 11:45:12.108 No report imported, no coverage information will be imported by JaCoCo XML Report Importer
+[INFO] 11:45:12.108 Sensor JaCoCo XML Report Importer [jacoco] (done) | time=4ms
+[INFO] 11:45:12.108 Sensor CSS Rules [javascript]
+[INFO] 11:45:12.109 No CSS, PHP, HTML or VueJS files are found in the project. CSS analysis is skipped.
+[INFO] 11:45:12.109 Sensor CSS Rules [javascript] (done) | time=1ms
+[INFO] 11:45:12.111 Sensor C# Project Type Information [csharp]
+[INFO] 11:45:12.113 Sensor C# Project Type Information [csharp] (done) | time=1ms
+[INFO] 11:45:12.113 Sensor C# Analysis Log [csharp]
+[INFO] 11:45:12.186 Sensor C# Analysis Log [csharp] (done) | time=73ms
+[INFO] 11:45:12.186 Sensor C# Properties [csharp]
+[INFO] 11:45:12.186 Sensor C# Properties [csharp] (done) | time=0ms
+[INFO] 11:45:12.187 Sensor SurefireSensor [java]
+[INFO] 11:45:12.189 parsing [/var/lib/jenkins/workspace/devops-ci-cd/target/surefire-reports]
+[INFO] 11:45:12.351 Sensor SurefireSensor [java] (done) | time=164ms
+[INFO] 11:45:12.352 Sensor HTML [web]
+[INFO] 11:45:12.358 Sensor HTML [web] (done) | time=6ms
+[INFO] 11:45:12.358 Sensor XML Sensor [xml]
+[INFO] 11:45:12.383 1 source file to be analyzed
+[INFO] 11:45:12.763 1/1 source file has been analyzed
+[INFO] 11:45:12.763 Sensor XML Sensor [xml] (done) | time=405ms
+[INFO] 11:45:12.763 Sensor TextAndSecretsSensor [text]
+[INFO] 11:45:12.774 9 source files to be analyzed
+[INFO] 11:45:12.796 9/9 source files have been analyzed
+[INFO] 11:45:12.798 Sensor TextAndSecretsSensor [text] (done) | time=35ms
+[INFO] 11:45:12.799 Sensor VB.NET Project Type Information [vbnet]
+[INFO] 11:45:12.801 Sensor VB.NET Project Type Information [vbnet] (done) | time=2ms
+[INFO] 11:45:12.801 Sensor VB.NET Analysis Log [vbnet]
+[INFO] 11:45:12.871 Sensor VB.NET Analysis Log [vbnet] (done) | time=70ms
+[INFO] 11:45:12.874 Sensor VB.NET Properties [vbnet]
+[INFO] 11:45:12.875 Sensor VB.NET Properties [vbnet] (done) | time=1ms
+[INFO] 11:45:12.875 Sensor IaC Docker Sensor [iac]
+[INFO] 11:45:12.882 0 source files to be analyzed
+[INFO] 11:45:13.009 0/0 source files have been analyzed
+[INFO] 11:45:13.009 Sensor IaC Docker Sensor [iac] (done) | time=134ms
+[INFO] 11:45:13.024 ------------- Run sensors on project
+[INFO] 11:45:13.161 Sensor Analysis Warnings import [csharp]
+[INFO] 11:45:13.163 Sensor Analysis Warnings import [csharp] (done) | time=2ms
+[INFO] 11:45:13.163 Sensor Zero Coverage Sensor
+[INFO] 11:45:13.177 Sensor Zero Coverage Sensor (done) | time=13ms
+[INFO] 11:45:13.177 Sensor Java CPD Block Indexer
+[INFO] 11:45:13.245 Sensor Java CPD Block Indexer (done) | time=68ms
+[INFO] 11:45:13.264 CPD Executor 2 files had no CPD blocks
+[INFO] 11:45:13.264 CPD Executor Calculating CPD for 3 files
+[INFO] 11:45:13.291 CPD Executor CPD calculation finished (done) | time=21ms
+[INFO] 11:45:13.601 Analysis report generated in 291ms, dir size=144.0 kB
+[INFO] 11:45:13.662 Analysis report compressed in 59ms, zip size=31.7 kB
+[INFO] 11:45:13.928 Analysis report uploaded in 266ms
+[INFO] 11:45:13.932 ANALYSIS SUCCESSFUL, you can find the results at: http://VmIP:9000/dashboard?id=devops-ci-cd-pipeline
+[INFO] 11:45:13.932 Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[INFO] 11:45:13.934 More about the report processing at http://VmIP:9000/api/ce/task?id=AZptlaBi-LlCg3gGNC7E
+[INFO] 11:45:13.950 Analysis total time: 25.493 s
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  30.650 s
+[INFO] Finished at: 2025-11-10T11:45:13Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // catchError
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Maven Package)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ mvn clean package -DskipTests
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.devops:devops-ci-cd-pipeline >------------------
+[INFO] Building devops-ci-cd-pipeline 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ devops-ci-cd-pipeline ---
+[INFO] Deleting /var/lib/jenkins/workspace/devops-ci-cd/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ devops-ci-cd-pipeline ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ devops-ci-cd-pipeline ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 5 source files with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ devops-ci-cd-pipeline ---
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/devops-ci-cd/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ devops-ci-cd-pipeline ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ devops-ci-cd-pipeline ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ devops-ci-cd-pipeline ---
+[INFO] Building jar: /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.3.0:repackage (repackage) @ devops-ci-cd-pipeline ---
+[INFO] Replacing main artifact /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.213 s
+[INFO] Finished at: 2025-11-10T11:45:28Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Maven Deploy To Nexus)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] input
+Do you want to deploy Artifact to Nexus?
+Proceed or Abort
+Approved by khawla rouis
+[Pipeline] withCredentials
+Masking supported pattern matches of $NEXUS_USER or $NEXUS_PASS
+[Pipeline] {
+[Pipeline] configFileProvider
+provisioning config files...
+copy managed file [Nexus Settings] to file:/var/lib/jenkins/workspace/devops-ci-cd@tmp/config5924071948380112113tmp
+[Pipeline] {
+[Pipeline] sh
++ mvn clean deploy -s /var/lib/jenkins/workspace/devops-ci-cd@tmp/config5924071948380112113tmp -DaltDeploymentRepository=nexus::default::http://VmIP:8081/repository/maven-snapshots/ -DskipTests
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.devops:devops-ci-cd-pipeline >------------------
+[INFO] Building devops-ci-cd-pipeline 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ devops-ci-cd-pipeline ---
+[INFO] Deleting /var/lib/jenkins/workspace/devops-ci-cd/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ devops-ci-cd-pipeline ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ devops-ci-cd-pipeline ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 5 source files with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ devops-ci-cd-pipeline ---
+[INFO] skip non existing resourceDirectory /var/lib/jenkins/workspace/devops-ci-cd/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ devops-ci-cd-pipeline ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ devops-ci-cd-pipeline ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ devops-ci-cd-pipeline ---
+[INFO] Building jar: /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.3.0:repackage (repackage) @ devops-ci-cd-pipeline ---
+[INFO] Replacing main artifact /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ devops-ci-cd-pipeline ---
+[INFO] Installing /var/lib/jenkins/workspace/devops-ci-cd/pom.xml to /var/lib/jenkins/.m2/repository/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.pom
+[INFO] Installing /var/lib/jenkins/workspace/devops-ci-cd/target/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar to /var/lib/jenkins/.m2/repository/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- deploy:3.1.2:deploy (default-deploy) @ devops-ci-cd-pipeline ---
+[INFO] Using alternate deployment repository nexus::default::http://VmIP:8081/repository/maven-snapshots/
+[WARNING] Using legacy syntax for alternative repository. Use "nexus::http://VmIP:8081/repository/maven-snapshots/" instead.
+Downloading from nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/maven-metadata.xml
+Progress (1): 781 B
+                   
+Downloaded from nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/maven-metadata.xml (781 B at 929 B/s)
+Uploading to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-20251110.114940-2.pom
+Progress (1): 1.9 kB
+                    
+Uploaded to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-20251110.114940-2.pom (1.9 kB at 1.8 kB/s)
+Uploading to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-20251110.114940-2.jar
+Progress (1): 0/31 MB
+Progress (1): 0.1/31 MB
+Progress (1): 0.1/31 MB
+Progress (1): 0.1/31 MB
+Progress (1): 0.2/31 MB
+Progress (1): 0.2/31 MB
+Progress (1): 0.2/31 MB
+Progress (1): 0.3/31 MB
+Progress (1): 0.3/31 MB
+Progress (1): 0.3/31 MB
+Progress (1): 0.4/31 MB
+Progress (1): 0.4/31 MB
+Progress (1): 0.4/31 MB
+Progress (1): 0.5/31 MB
+Progress (1): 0.5/31 MB
+Progress (1): 0.5/31 MB
+Progress (1): 0.6/31 MB
+Progress (1): 0.6/31 MB
+Progress (1): 0.6/31 MB
+Progress (1): 0.7/31 MB
+Progress (1): 0.7/31 MB
+Progress (1): 0.7/31 MB
+Progress (1): 0.8/31 MB
+Progress (1): 0.8/31 MB
+Progress (1): 0.8/31 MB
+Progress (1): 0.9/31 MB
+Progress (1): 0.9/31 MB
+Progress (1): 0.9/31 MB
+Progress (1): 1.0/31 MB
+Progress (1): 1.0/31 MB
+Progress (1): 1.0/31 MB
+Progress (1): 1.0/31 MB
+Progress (1): 1.1/31 MB
+Progress (1): 1.1/31 MB
+Progress (1): 1.1/31 MB
+Progress (1): 1.2/31 MB
+Progress (1): 1.2/31 MB
+Progress (1): 1.2/31 MB
+Progress (1): 1.3/31 MB
+Progress (1): 1.3/31 MB
+Progress (1): 1.3/31 MB
+Progress (1): 1.4/31 MB
+Progress (1): 1.4/31 MB
+Progress (1): 1.4/31 MB
+Progress (1): 1.5/31 MB
+Progress (1): 1.5/31 MB
+Progress (1): 1.5/31 MB
+Progress (1): 1.6/31 MB
+Progress (1): 1.6/31 MB
+Progress (1): 1.6/31 MB
+Progress (1): 1.7/31 MB
+Progress (1): 1.7/31 MB
+Progress (1): 1.7/31 MB
+Progress (1): 1.8/31 MB
+Progress (1): 1.8/31 MB
+Progress (1): 1.8/31 MB
+Progress (1): 1.9/31 MB
+Progress (1): 1.9/31 MB
+Progress (1): 1.9/31 MB
+Progress (1): 2.0/31 MB
+Progress (1): 2.0/31 MB
+Progress (1): 2.0/31 MB
+Progress (1): 2.1/31 MB
+Progress (1): 2.1/31 MB
+Progress (1): 2.1/31 MB
+Progress (1): 2.2/31 MB
+Progress (1): 2.2/31 MB
+Progress (1): 2.2/31 MB
+Progress (1): 2.3/31 MB
+Progress (1): 2.3/31 MB
+Progress (1): 2.3/31 MB
+Progress (1): 2.4/31 MB
+Progress (1): 2.4/31 MB
+Progress (1): 2.4/31 MB
+Progress (1): 2.5/31 MB
+Progress (1): 2.5/31 MB
+Progress (1): 2.5/31 MB
+Progress (1): 2.6/31 MB
+Progress (1): 2.6/31 MB
+Progress (1): 2.6/31 MB
+Progress (1): 2.7/31 MB
+Progress (1): 2.7/31 MB
+Progress (1): 2.7/31 MB
+Progress (1): 2.8/31 MB
+Progress (1): 2.8/31 MB
+Progress (1): 2.8/31 MB
+Progress (1): 2.9/31 MB
+Progress (1): 2.9/31 MB
+Progress (1): 2.9/31 MB
+Progress (1): 2.9/31 MB
+Progress (1): 3.0/31 MB
+Progress (1): 3.0/31 MB
+Progress (1): 3.0/31 MB
+Progress (1): 3.1/31 MB
+Progress (1): 3.1/31 MB
+Progress (1): 3.1/31 MB
+Progress (1): 3.2/31 MB
+Progress (1): 3.2/31 MB
+Progress (1): 3.2/31 MB
+Progress (1): 3.3/31 MB
+Progress (1): 3.3/31 MB
+Progress (1): 3.3/31 MB
+Progress (1): 3.4/31 MB
+Progress (1): 3.4/31 MB
+Progress (1): 3.4/31 MB
+Progress (1): 3.5/31 MB
+Progress (1): 3.5/31 MB
+Progress (1): 3.5/31 MB
+Progress (1): 3.6/31 MB
+Progress (1): 3.6/31 MB
+Progress (1): 3.6/31 MB
+Progress (1): 3.7/31 MB
+Progress (1): 3.7/31 MB
+Progress (1): 3.7/31 MB
+Progress (1): 3.8/31 MB
+Progress (1): 3.8/31 MB
+Progress (1): 3.8/31 MB
+Progress (1): 3.9/31 MB
+Progress (1): 3.9/31 MB
+Progress (1): 3.9/31 MB
+Progress (1): 4.0/31 MB
+Progress (1): 4.0/31 MB
+Progress (1): 4.0/31 MB
+Progress (1): 4.1/31 MB
+Progress (1): 4.1/31 MB
+Progress (1): 4.1/31 MB
+Progress (1): 4.2/31 MB
+Progress (1): 4.2/31 MB
+Progress (1): 4.2/31 MB
+Progress (1): 4.3/31 MB
+Progress (1): 4.3/31 MB
+Progress (1): 4.3/31 MB
+Progress (1): 4.4/31 MB
+Progress (1): 4.4/31 MB
+Progress (1): 4.4/31 MB
+Progress (1): 4.5/31 MB
+Progress (1): 4.5/31 MB
+Progress (1): 4.5/31 MB
+Progress (1): 4.6/31 MB
+Progress (1): 4.6/31 MB
+Progress (1): 4.6/31 MB
+Progress (1): 4.7/31 MB
+Progress (1): 4.7/31 MB
+Progress (1): 4.7/31 MB
+Progress (1): 4.8/31 MB
+Progress (1): 4.8/31 MB
+Progress (1): 4.8/31 MB
+Progress (1): 4.8/31 MB
+Progress (1): 4.9/31 MB
+Progress (1): 4.9/31 MB
+Progress (1): 4.9/31 MB
+Progress (1): 5.0/31 MB
+Progress (1): 5.0/31 MB
+Progress (1): 5.0/31 MB
+Progress (1): 5.1/31 MB
+Progress (1): 5.1/31 MB
+Progress (1): 5.1/31 MB
+Progress (1): 5.2/31 MB
+Progress (1): 5.2/31 MB
+Progress (1): 5.2/31 MB
+Progress (1): 5.3/31 MB
+Progress (1): 5.3/31 MB
+Progress (1): 5.3/31 MB
+Progress (1): 5.4/31 MB
+Progress (1): 5.4/31 MB
+Progress (1): 5.4/31 MB
+Progress (1): 5.5/31 MB
+Progress (1): 5.5/31 MB
+Progress (1): 5.5/31 MB
+Progress (1): 5.6/31 MB
+Progress (1): 5.6/31 MB
+Progress (1): 5.6/31 MB
+Progress (1): 5.7/31 MB
+Progress (1): 5.7/31 MB
+Progress (1): 5.7/31 MB
+Progress (1): 5.8/31 MB
+Progress (1): 5.8/31 MB
+Progress (1): 5.8/31 MB
+Progress (1): 5.9/31 MB
+Progress (1): 5.9/31 MB
+Progress (1): 5.9/31 MB
+Progress (1): 6.0/31 MB
+Progress (1): 6.0/31 MB
+Progress (1): 6.0/31 MB
+Progress (1): 6.1/31 MB
+Progress (1): 6.1/31 MB
+Progress (1): 6.1/31 MB
+Progress (1): 6.2/31 MB
+Progress (1): 6.2/31 MB
+Progress (1): 6.2/31 MB
+Progress (1): 6.3/31 MB
+Progress (1): 6.3/31 MB
+Progress (1): 6.3/31 MB
+Progress (1): 6.4/31 MB
+Progress (1): 6.4/31 MB
+Progress (1): 6.4/31 MB
+Progress (1): 6.5/31 MB
+Progress (1): 6.5/31 MB
+Progress (1): 6.5/31 MB
+Progress (1): 6.6/31 MB
+Progress (1): 6.6/31 MB
+Progress (1): 6.6/31 MB
+Progress (1): 6.7/31 MB
+Progress (1): 6.7/31 MB
+Progress (1): 6.7/31 MB
+Progress (1): 6.8/31 MB
+Progress (1): 6.8/31 MB
+Progress (1): 6.8/31 MB
+Progress (1): 6.8/31 MB
+Progress (1): 6.9/31 MB
+Progress (1): 6.9/31 MB
+Progress (1): 6.9/31 MB
+Progress (1): 7.0/31 MB
+Progress (1): 7.0/31 MB
+Progress (1): 7.0/31 MB
+Progress (1): 7.1/31 MB
+Progress (1): 7.1/31 MB
+Progress (1): 7.1/31 MB
+Progress (1): 7.2/31 MB
+Progress (1): 7.2/31 MB
+Progress (1): 7.2/31 MB
+Progress (1): 7.3/31 MB
+Progress (1): 7.3/31 MB
+Progress (1): 7.3/31 MB
+Progress (1): 7.4/31 MB
+Progress (1): 7.4/31 MB
+Progress (1): 7.4/31 MB
+Progress (1): 7.5/31 MB
+Progress (1): 7.5/31 MB
+Progress (1): 7.5/31 MB
+Progress (1): 7.6/31 MB
+Progress (1): 7.6/31 MB
+Progress (1): 7.6/31 MB
+Progress (1): 7.7/31 MB
+Progress (1): 7.7/31 MB
+Progress (1): 7.7/31 MB
+Progress (1): 7.8/31 MB
+Progress (1): 7.8/31 MB
+Progress (1): 7.8/31 MB
+Progress (1): 7.9/31 MB
+Progress (1): 7.9/31 MB
+Progress (1): 7.9/31 MB
+Progress (1): 8.0/31 MB
+Progress (1): 8.0/31 MB
+Progress (1): 8.0/31 MB
+Progress (1): 8.1/31 MB
+Progress (1): 8.1/31 MB
+Progress (1): 8.1/31 MB
+Progress (1): 8.2/31 MB
+Progress (1): 8.2/31 MB
+Progress (1): 8.2/31 MB
+Progress (1): 8.3/31 MB
+Progress (1): 8.3/31 MB
+Progress (1): 8.3/31 MB
+Progress (1): 8.4/31 MB
+Progress (1): 8.4/31 MB
+Progress (1): 8.4/31 MB
+Progress (1): 8.5/31 MB
+Progress (1): 8.5/31 MB
+Progress (1): 8.5/31 MB
+Progress (1): 8.6/31 MB
+Progress (1): 8.6/31 MB
+Progress (1): 8.6/31 MB
+Progress (1): 8.7/31 MB
+Progress (1): 8.7/31 MB
+Progress (1): 8.7/31 MB
+Progress (1): 8.7/31 MB
+Progress (1): 8.8/31 MB
+Progress (1): 8.8/31 MB
+Progress (1): 8.8/31 MB
+Progress (1): 8.9/31 MB
+Progress (1): 8.9/31 MB
+Progress (1): 8.9/31 MB
+Progress (1): 9.0/31 MB
+Progress (1): 9.0/31 MB
+Progress (1): 9.0/31 MB
+Progress (1): 9.1/31 MB
+Progress (1): 9.1/31 MB
+Progress (1): 9.1/31 MB
+Progress (1): 9.2/31 MB
+Progress (1): 9.2/31 MB
+Progress (1): 9.2/31 MB
+Progress (1): 9.3/31 MB
+Progress (1): 9.3/31 MB
+Progress (1): 9.3/31 MB
+Progress (1): 9.4/31 MB
+Progress (1): 9.4/31 MB
+Progress (1): 9.4/31 MB
+Progress (1): 9.5/31 MB
+Progress (1): 9.5/31 MB
+Progress (1): 9.5/31 MB
+Progress (1): 9.6/31 MB
+Progress (1): 9.6/31 MB
+Progress (1): 9.6/31 MB
+Progress (1): 9.7/31 MB
+Progress (1): 9.7/31 MB
+Progress (1): 9.7/31 MB
+Progress (1): 9.8/31 MB
+Progress (1): 9.8/31 MB
+Progress (1): 9.8/31 MB
+Progress (1): 9.9/31 MB
+Progress (1): 9.9/31 MB
+Progress (1): 9.9/31 MB
+Progress (1): 10.0/31 MB
+Progress (1): 10.0/31 MB
+Progress (1): 10/31 MB  
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 10/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 11/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 12/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 13/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 14/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 15/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 16/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 17/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 18/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 19/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 20/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 21/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 22/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 23/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 24/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 25/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 26/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 27/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 28/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 29/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 30/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31/31 MB
+Progress (1): 31 MB   
+                   
+Uploaded to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/devops-ci-cd-pipeline-0.0.1-20251110.114940-2.jar (31 MB at 7.1 MB/s)
+Downloading from nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/maven-metadata.xml
+Progress (1): 291 B
+                   
+Downloaded from nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/maven-metadata.xml (291 B at 1.8 kB/s)
+Uploading to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/maven-metadata.xml
+Progress (1): 781 B
+                   
+Uploaded to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/0.0.1-SNAPSHOT/maven-metadata.xml (781 B at 3.1 kB/s)
+Uploading to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/maven-metadata.xml
+Progress (1): 291 B
+                   
+Uploaded to nexus: http://VmIP:8081/repository/maven-snapshots/com/devops/devops-ci-cd-pipeline/maven-metadata.xml (291 B at 1.0 kB/s)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.845 s
+[INFO] Finished at: 2025-11-10T11:49:55Z
+[INFO] ------------------------------------------------------------------------
+[Pipeline] }
+Deleting 1 temporary files
+[Pipeline] // configFileProvider
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Login)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_USERNAME or $DOCKER_PASSWORD
+[Pipeline] {
+[Pipeline] sh
++ echo ****
++ docker login -u **** --password-stdin
+Login Succeeded
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build and Push Image to Docker Registry)
+[Pipeline] input
+Do you want to build and push the Docker image?
+Proceed or Abort
+Approved by khawla rouis
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withDockerRegistry
+Using the existing docker config file.
+Removing blacklisted property: auths
+$ docker login -u user -p ******** https://index.docker.io/v1/
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+
+WARNING! Your credentials are stored unencrypted in '/var/lib/jenkins/workspace/devops-ci-cd@tmp/f538cf72-d1a5-402b-87f7-c870c7b91715/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker build -t user/devops-ci-cd-pipeline:latest -f Dockerfile .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from dockerfile
+#1 transferring dockerfile: 174B done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/eclipse-temurin:17-jdk-jammy
+#2 ...
+
+#3 [auth] library/eclipse-temurin:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/eclipse-temurin:17-jdk-jammy
+#2 DONE 3.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/2] FROM docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:4cc241e08856b07ffe601a4a6f426add58475931eb5215e883c65d21985cfb0a
+#5 resolve docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:4cc241e08856b07ffe601a4a6f426add58475931eb5215e883c65d21985cfb0a 0.1s done
+#5 sha256:4cc241e08856b07ffe601a4a6f426add58475931eb5215e883c65d21985cfb0a 6.55kB / 6.55kB done
+#5 sha256:feda362cb92df42ef38668b98de80f0ad2cf32e5fb1b7e8d0c04c390e644aa65 1.94kB / 1.94kB done
+#5 sha256:bebbd3fef853427e7e14833084ca7a1a484bcfe1de0699799f23649fa1ccd9a2 6.21kB / 6.21kB done
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 0B / 29.54MB 0.1s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 0B / 20.70MB 0.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 0B / 144.85MB 0.3s
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 30.90MB 0.7s done
+#6 DONE 0.8s
+
+#5 [1/2] FROM docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:4cc241e08856b07ffe601a4a6f426add58475931eb5215e883c65d21985cfb0a
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 1.05MB / 20.70MB 1.9s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 0B / 29.54MB 5.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 1.05MB / 144.85MB 5.4s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 2.10MB / 20.70MB 6.1s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 3.15MB / 20.70MB 9.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 1.05MB / 29.54MB 10.2s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 2.10MB / 144.85MB 10.5s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 4.19MB / 20.70MB 12.2s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 3.15MB / 29.54MB 14.7s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 5.24MB / 20.70MB 15.6s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 4.19MB / 144.85MB 15.6s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 6.29MB / 20.70MB 18.2s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 5.24MB / 29.54MB 19.8s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 5.24MB / 144.85MB 20.8s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 7.34MB / 20.70MB 21.7s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 8.39MB / 20.70MB 23.9s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 7.34MB / 29.54MB 24.3s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 6.29MB / 144.85MB 26.0s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 9.44MB / 20.70MB 27.1s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 8.39MB / 29.54MB 29.4s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 10.49MB / 20.70MB 30.0s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 8.39MB / 144.85MB 31.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 10.49MB / 29.54MB 32.3s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 11.53MB / 20.70MB 33.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 9.44MB / 144.85MB 36.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 11.53MB / 29.54MB 37.3s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 12.58MB / 20.70MB 37.6s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 11.53MB / 144.85MB 41.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 13.63MB / 29.54MB 41.4s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 13.63MB / 20.70MB 41.4s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 14.68MB / 20.70MB 45.0s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 13.63MB / 144.85MB 46.2s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 14.68MB / 29.54MB 46.4s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 15.73MB / 20.70MB 47.8s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 16.78MB / 20.70MB 51.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 16.78MB / 29.54MB 51.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 15.73MB / 144.85MB 51.2s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 16.78MB / 20.70MB 56.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 17.83MB / 29.54MB 56.2s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 16.78MB / 144.85MB 56.3s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 17.83MB / 20.70MB 57.0s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 19.92MB / 29.54MB 59.5s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 18.87MB / 20.70MB 59.5s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 18.87MB / 144.85MB 61.3s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 19.92MB / 20.70MB 61.8s
+#5 sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 20.70MB / 20.70MB 63.4s done
+#5 sha256:8bdbf73ef0f37f72538659dd86a4eee8b35c699a5828c9cd3d8e07f64bbfd75b 0B / 159B 63.5s
+#5 sha256:8bdbf73ef0f37f72538659dd86a4eee8b35c699a5828c9cd3d8e07f64bbfd75b 159B / 159B 64.4s done
+#5 sha256:9390556c81ce95f96d0bbe82016aeda995b50aa79eb2b09e8be3792445724ac8 0B / 2.28kB 64.5s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 20.97MB / 29.54MB 64.7s
+#5 sha256:9390556c81ce95f96d0bbe82016aeda995b50aa79eb2b09e8be3792445724ac8 2.28kB / 2.28kB 64.9s
+#5 sha256:9390556c81ce95f96d0bbe82016aeda995b50aa79eb2b09e8be3792445724ac8 2.28kB / 2.28kB 64.9s done
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 20.97MB / 144.85MB 66.4s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 23.07MB / 29.54MB 66.6s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 25.17MB / 29.54MB 70.6s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 24.12MB / 144.85MB 71.5s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 27.26MB / 29.54MB 75.3s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 27.26MB / 144.85MB 76.5s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 29.36MB / 29.54MB 79.2s
+#5 sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 29.54MB / 29.54MB 79.3s done
+#5 extracting sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 0.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 30.41MB / 144.85MB 81.5s
+#5 extracting sha256:af6eca94c8104c8e90d3f9efe59c2b3a02b20aad3d985e31c7cd009ea104c447 3.8s done
+#5 extracting sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 0.1s
+#5 extracting sha256:da4464e53e3c2aa07472c273270270d36ea6e848e566cb3deaa8e028de9670c9 2.6s done
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 35.65MB / 144.85MB 86.6s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 41.94MB / 144.85MB 91.8s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 47.19MB / 144.85MB 96.8s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 51.38MB / 144.85MB 101.9s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 56.62MB / 144.85MB 107.0s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 58.72MB / 144.85MB 112.0s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 62.91MB / 144.85MB 117.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 68.16MB / 144.85MB 122.2s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 73.40MB / 144.85MB 127.4s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 77.59MB / 144.85MB 132.4s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 81.79MB / 144.85MB 137.4s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 87.03MB / 144.85MB 142.5s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 92.27MB / 144.85MB 147.5s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 98.57MB / 144.85MB 152.6s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 102.76MB / 144.85MB 157.7s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 108.00MB / 144.85MB 162.8s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 113.25MB / 144.85MB 167.8s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 118.49MB / 144.85MB 173.0s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 123.73MB / 144.85MB 178.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 130.02MB / 144.85MB 183.1s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 134.22MB / 144.85MB 188.2s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 137.36MB / 144.85MB 193.2s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 140.51MB / 144.85MB 198.3s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 143.65MB / 144.85MB 203.4s
+#5 sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 144.85MB / 144.85MB 203.6s done
+#5 extracting sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 0.1s
+#5 extracting sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 5.2s
+#5 extracting sha256:27e66c9bfc24c6bbed2d7c38f37cfdfc2f0321d0377c7b8e2f108cde535b535a 6.5s done
+#5 extracting sha256:8bdbf73ef0f37f72538659dd86a4eee8b35c699a5828c9cd3d8e07f64bbfd75b
+#5 extracting sha256:8bdbf73ef0f37f72538659dd86a4eee8b35c699a5828c9cd3d8e07f64bbfd75b done
+#5 extracting sha256:9390556c81ce95f96d0bbe82016aeda995b50aa79eb2b09e8be3792445724ac8 done
+#5 DONE 210.8s
+
+#7 [2/2] COPY target/*.jar app.jar
+#7 DONE 0.8s
+
+#8 exporting to image
+#8 exporting layers 0.1s done
+#8 writing image sha256:b0cc2035e3a07c45203bfd06f193cd394fd5f7f3d109653d0c5bab82d442ef3f
+#8 writing image sha256:b0cc2035e3a07c45203bfd06f193cd394fd5f7f3d109653d0c5bab82d442ef3f done
+#8 naming to docker.io/user/devops-ci-cd-pipeline:latest 0.0s done
+#8 DONE 0.2s
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker tag user/devops-ci-cd-pipeline:latest index.docker.io/user/devops-ci-cd-pipeline:latest
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker push index.docker.io/user/devops-ci-cd-pipeline:latest
+The push refers to repository [docker.io/user/devops-ci-cd-pipeline]
+4093a9d9c0e1: Preparing
+da55594f846d: Preparing
+b40f02e260eb: Preparing
+0e2349bb7a63: Preparing
+1879c03b6281: Preparing
+767e56ba346a: Preparing
+767e56ba346a: Waiting
+0e2349bb7a63: Layer already exists
+1879c03b6281: Layer already exists
+da55594f846d: Layer already exists
+b40f02e260eb: Layer already exists
+767e56ba346a: Layer already exists
+4093a9d9c0e1: Pushed
+latest: digest: sha256:6dd7c53cbc0034a3a67e038511674a6691d895fb05882e6dca32ae7bbeb65264 size: 1581
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withDockerRegistry
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] input
+Do you want to deploy to staging environment?
+Proceed or Abort
+Approved by khawla rouis
+[Pipeline] script
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKER_USERNAME or $DOCKER_PASSWORD
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sshagent
+[ssh-agent] Using credentials staging
+$ ssh-agent
+SSH_AUTH_SOCK=/tmp/ssh-BNf5OlhfmrNN/agent.11977
+SSH_AGENT_PID=11982
+Running ssh-add (command line suppressed)
+Identity added: /var/lib/jenkins/workspace/devops-ci-cd@tmp/private_key_3628428755164482070.key (stagingVmUser@staging-vm)
+[ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
++ scp -o StrictHostKeyChecking=no docker-compose.yml stagingVmUser@stagingVmIp:devops-ci-cd-pipeline
++ ssh -o StrictHostKeyChecking=no stagingVmUser@stagingVmIp
+Pseudo-terminal will not be allocated because stdin is not a terminal.
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-35-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+80 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+Login Succeeded
+Pulling devops-ci-cd-pipeline ... 
+Pulling devops-ci-cd-pipeline ... pulling from ****/devops-...
+Pulling devops-ci-cd-pipeline ... already exists
+Pulling devops-ci-cd-pipeline ... pulling fs layer
+Pulling devops-ci-cd-pipeline ... pulling fs layer
+Pulling devops-ci-cd-pipeline ... pulling fs layer
+Pulling devops-ci-cd-pipeline ... pulling fs layer
+Pulling devops-ci-cd-pipeline ... pulling fs layer
+Pulling devops-ci-cd-pipeline ... waiting
+Pulling devops-ci-cd-pipeline ... waiting
+Pulling devops-ci-cd-pipeline ... downloading (100.0%)
+Pulling devops-ci-cd-pipeline ... verifying checksum
+Pulling devops-ci-cd-pipeline ... download complete
+Pulling devops-ci-cd-pipeline ... downloading (0.4%)
+Pulling devops-ci-cd-pipeline ... downloading (1.0%)
+Pulling devops-ci-cd-pipeline ... downloading (2.1%)
+Pulling devops-ci-cd-pipeline ... downloading (44.2%)
+Pulling devops-ci-cd-pipeline ... downloading (100.0%)
+Pulling devops-ci-cd-pipeline ... verifying checksum
+Pulling devops-ci-cd-pipeline ... download complete
+Pulling devops-ci-cd-pipeline ... downloading (0.7%)
+Pulling devops-ci-cd-pipeline ... downloading (3.1%)
+Pulling devops-ci-cd-pipeline ... downloading (4.1%)
+Pulling devops-ci-cd-pipeline ... downloading (5.2%)
+Pulling devops-ci-cd-pipeline ... downloading (1.1%)
+Pulling devops-ci-cd-pipeline ... downloading (6.2%)
+Pulling devops-ci-cd-pipeline ... downloading (7.2%)
+Pulling devops-ci-cd-pipeline ... downloading (1.0%)
+Pulling devops-ci-cd-pipeline ... downloading (8.2%)
+Pulling devops-ci-cd-pipeline ... downloading (2.0%)
+Pulling devops-ci-cd-pipeline ... downloading (1.5%)
+Pulling devops-ci-cd-pipeline ... downloading (9.3%)
+Pulling devops-ci-cd-pipeline ... downloading (10.3%)
+Pulling devops-ci-cd-pipeline ... downloading (3.1%)
+Pulling devops-ci-cd-pipeline ... downloading (11.3%)
+Pulling devops-ci-cd-pipeline ... downloading (4.1%)
+Pulling devops-ci-cd-pipeline ... downloading (1.8%)
+Pulling devops-ci-cd-pipeline ... downloading (5.2%)
+Pulling devops-ci-cd-pipeline ... downloading (6.2%)
+Pulling devops-ci-cd-pipeline ... downloading (2.2%)
+Pulling devops-ci-cd-pipeline ... downloading (7.3%)
+Pulling devops-ci-cd-pipeline ... downloading (2.6%)
+Pulling devops-ci-cd-pipeline ... downloading (8.4%)
+Pulling devops-ci-cd-pipeline ... downloading (9.4%)
+Pulling devops-ci-cd-pipeline ... downloading (3.0%)
+Pulling devops-ci-cd-pipeline ... downloading (10.4%)
+Pulling devops-ci-cd-pipeline ... downloading (11.5%)
+Pulling devops-ci-cd-pipeline ... downloading (12.4%)
+Pulling devops-ci-cd-pipeline ... downloading (3.3%)
+Pulling devops-ci-cd-pipeline ... downloading (13.4%)
+Pulling devops-ci-cd-pipeline ... downloading (12.5%)
+Pulling devops-ci-cd-pipeline ... downloading (14.4%)
+Pulling devops-ci-cd-pipeline ... downloading (13.6%)
+Pulling devops-ci-cd-pipeline ... downloading (3.7%)
+Pulling devops-ci-cd-pipeline ... downloading (15.4%)
+Pulling devops-ci-cd-pipeline ... downloading (14.6%)
+Pulling devops-ci-cd-pipeline ... downloading (16.5%)
+Pulling devops-ci-cd-pipeline ... downloading (15.7%)
+Pulling devops-ci-cd-pipeline ... downloading (4.1%)
+Pulling devops-ci-cd-pipeline ... downloading (17.5%)
+Pulling devops-ci-cd-pipeline ... downloading (16.7%)
+Pulling devops-ci-cd-pipeline ... downloading (18.5%)
+Pulling devops-ci-cd-pipeline ... downloading (19.6%)
+Pulling devops-ci-cd-pipeline ... downloading (17.8%)
+Pulling devops-ci-cd-pipeline ... downloading (4.4%)
+Pulling devops-ci-cd-pipeline ... downloading (20.6%)
+Pulling devops-ci-cd-pipeline ... downloading (18.8%)
+Pulling devops-ci-cd-pipeline ... downloading (21.6%)
+Pulling devops-ci-cd-pipeline ... downloading (4.8%)
+Pulling devops-ci-cd-pipeline ... downloading (19.9%)
+Pulling devops-ci-cd-pipeline ... downloading (22.7%)
+Pulling devops-ci-cd-pipeline ... downloading (20.9%)
+Pulling devops-ci-cd-pipeline ... downloading (23.7%)
+Pulling devops-ci-cd-pipeline ... downloading (24.7%)
+Pulling devops-ci-cd-pipeline ... downloading (21.9%)
+Pulling devops-ci-cd-pipeline ... downloading (5.2%)
+Pulling devops-ci-cd-pipeline ... downloading (25.8%)
+Pulling devops-ci-cd-pipeline ... downloading (26.8%)
+Pulling devops-ci-cd-pipeline ... downloading (27.8%)
+Pulling devops-ci-cd-pipeline ... downloading (23.0%)
+Pulling devops-ci-cd-pipeline ... downloading (28.9%)
+Pulling devops-ci-cd-pipeline ... downloading (5.6%)
+Pulling devops-ci-cd-pipeline ... downloading (24.0%)
+Pulling devops-ci-cd-pipeline ... downloading (29.9%)
+Pulling devops-ci-cd-pipeline ... downloading (31.0%)
+Pulling devops-ci-cd-pipeline ... downloading (25.1%)
+Pulling devops-ci-cd-pipeline ... downloading (5.9%)
+Pulling devops-ci-cd-pipeline ... downloading (32.0%)
+Pulling devops-ci-cd-pipeline ... downloading (26.1%)
+Pulling devops-ci-cd-pipeline ... downloading (33.1%)
+Pulling devops-ci-cd-pipeline ... downloading (34.1%)
+Pulling devops-ci-cd-pipeline ... downloading (27.2%)
+Pulling devops-ci-cd-pipeline ... downloading (6.3%)
+Pulling devops-ci-cd-pipeline ... downloading (35.1%)
+Pulling devops-ci-cd-pipeline ... downloading (36.1%)
+Pulling devops-ci-cd-pipeline ... downloading (28.2%)
+Pulling devops-ci-cd-pipeline ... downloading (37.2%)
+Pulling devops-ci-cd-pipeline ... downloading (29.3%)
+Pulling devops-ci-cd-pipeline ... downloading (6.7%)
+Pulling devops-ci-cd-pipeline ... downloading (38.2%)
+Pulling devops-ci-cd-pipeline ... downloading (30.4%)
+Pulling devops-ci-cd-pipeline ... downloading (39.2%)
+Pulling devops-ci-cd-pipeline ... downloading (31.4%)
+Pulling devops-ci-cd-pipeline ... downloading (7.0%)
+Pulling devops-ci-cd-pipeline ... downloading (40.3%)
+Pulling devops-ci-cd-pipeline ... downloading (32.4%)
+Pulling devops-ci-cd-pipeline ... downloading (7.4%)
+Pulling devops-ci-cd-pipeline ... downloading (41.3%)
+Pulling devops-ci-cd-pipeline ... downloading (33.5%)
+Pulling devops-ci-cd-pipeline ... downloading (34.5%)
+Pulling devops-ci-cd-pipeline ... downloading (42.3%)
+Pulling devops-ci-cd-pipeline ... downloading (7.8%)
+Pulling devops-ci-cd-pipeline ... downloading (43.3%)
+Pulling devops-ci-cd-pipeline ... downloading (35.6%)
+Pulling devops-ci-cd-pipeline ... downloading (44.4%)
+Pulling devops-ci-cd-pipeline ... downloading (45.4%)
+Pulling devops-ci-cd-pipeline ... downloading (36.6%)
+Pulling devops-ci-cd-pipeline ... downloading (46.4%)
+Pulling devops-ci-cd-pipeline ... downloading (8.2%)
+Pulling devops-ci-cd-pipeline ... downloading (37.7%)
+Pulling devops-ci-cd-pipeline ... downloading (47.5%)
+Pulling devops-ci-cd-pipeline ... downloading (48.5%)
+Pulling devops-ci-cd-pipeline ... downloading (38.7%)
+Pulling devops-ci-cd-pipeline ... downloading (49.5%)
+Pulling devops-ci-cd-pipeline ... downloading (8.5%)
+Pulling devops-ci-cd-pipeline ... downloading (39.8%)
+Pulling devops-ci-cd-pipeline ... downloading (50.5%)
+Pulling devops-ci-cd-pipeline ... downloading (40.8%)
+Pulling devops-ci-cd-pipeline ... downloading (51.6%)
+Pulling devops-ci-cd-pipeline ... downloading (8.9%)
+Pulling devops-ci-cd-pipeline ... downloading (41.9%)
+Pulling devops-ci-cd-pipeline ... downloading (52.6%)
+Pulling devops-ci-cd-pipeline ... downloading (53.6%)
+Pulling devops-ci-cd-pipeline ... downloading (42.9%)
+Pulling devops-ci-cd-pipeline ... downloading (54.7%)
+Pulling devops-ci-cd-pipeline ... downloading (43.9%)
+Pulling devops-ci-cd-pipeline ... downloading (55.7%)
+Pulling devops-ci-cd-pipeline ... downloading (56.8%)
+Pulling devops-ci-cd-pipeline ... downloading (9.3%)
+Pulling devops-ci-cd-pipeline ... downloading (57.8%)
+Pulling devops-ci-cd-pipeline ... downloading (45.0%)
+Pulling devops-ci-cd-pipeline ... downloading (58.8%)
+Pulling devops-ci-cd-pipeline ... downloading (46.0%)
+Pulling devops-ci-cd-pipeline ... downloading (59.8%)
+Pulling devops-ci-cd-pipeline ... downloading (60.9%)
+Pulling devops-ci-cd-pipeline ... downloading (47.1%)
+Pulling devops-ci-cd-pipeline ... downloading (9.6%)
+Pulling devops-ci-cd-pipeline ... downloading (61.9%)
+Pulling devops-ci-cd-pipeline ... downloading (62.9%)
+Pulling devops-ci-cd-pipeline ... downloading (48.1%)
+Pulling devops-ci-cd-pipeline ... downloading (64.0%)
+Pulling devops-ci-cd-pipeline ... downloading (10.0%)
+Pulling devops-ci-cd-pipeline ... downloading (65.0%)
+Pulling devops-ci-cd-pipeline ... downloading (49.2%)
+Pulling devops-ci-cd-pipeline ... downloading (66.1%)
+Pulling devops-ci-cd-pipeline ... downloading (67.1%)
+Pulling devops-ci-cd-pipeline ... downloading (50.2%)
+Pulling devops-ci-cd-pipeline ... downloading (10.4%)
+Pulling devops-ci-cd-pipeline ... downloading (68.1%)
+Pulling devops-ci-cd-pipeline ... downloading (69.2%)
+Pulling devops-ci-cd-pipeline ... downloading (51.3%)
+Pulling devops-ci-cd-pipeline ... downloading (70.2%)
+Pulling devops-ci-cd-pipeline ... downloading (10.8%)
+Pulling devops-ci-cd-pipeline ... downloading (52.3%)
+Pulling devops-ci-cd-pipeline ... downloading (71.3%)
+Pulling devops-ci-cd-pipeline ... downloading (72.3%)
+Pulling devops-ci-cd-pipeline ... downloading (53.4%)
+Pulling devops-ci-cd-pipeline ... downloading (73.4%)
+Pulling devops-ci-cd-pipeline ... downloading (11.1%)
+Pulling devops-ci-cd-pipeline ... downloading (74.4%)
+Pulling devops-ci-cd-pipeline ... downloading (54.4%)
+Pulling devops-ci-cd-pipeline ... downloading (75.4%)
+Pulling devops-ci-cd-pipeline ... downloading (55.5%)
+Pulling devops-ci-cd-pipeline ... downloading (11.5%)
+Pulling devops-ci-cd-pipeline ... downloading (56.5%)
+Pulling devops-ci-cd-pipeline ... downloading (11.9%)
+Pulling devops-ci-cd-pipeline ... downloading (57.6%)
+Pulling devops-ci-cd-pipeline ... downloading (12.3%)
+Pulling devops-ci-cd-pipeline ... downloading (58.6%)
+Pulling devops-ci-cd-pipeline ... downloading (59.7%)
+Pulling devops-ci-cd-pipeline ... downloading (12.6%)
+Pulling devops-ci-cd-pipeline ... downloading (60.7%)
+Pulling devops-ci-cd-pipeline ... downloading (13.0%)
+Pulling devops-ci-cd-pipeline ... downloading (61.8%)
+Pulling devops-ci-cd-pipeline ... downloading (76.5%)
+Pulling devops-ci-cd-pipeline ... downloading (77.5%)
+Pulling devops-ci-cd-pipeline ... downloading (13.4%)
+Pulling devops-ci-cd-pipeline ... downloading (62.8%)
+Pulling devops-ci-cd-pipeline ... downloading (78.5%)
+Pulling devops-ci-cd-pipeline ... downloading (63.9%)
+Pulling devops-ci-cd-pipeline ... downloading (79.6%)
+Pulling devops-ci-cd-pipeline ... downloading (13.7%)
+Pulling devops-ci-cd-pipeline ... downloading (64.9%)
+Pulling devops-ci-cd-pipeline ... downloading (65.9%)
+Pulling devops-ci-cd-pipeline ... downloading (80.6%)
+Pulling devops-ci-cd-pipeline ... downloading (67.0%)
+Pulling devops-ci-cd-pipeline ... downloading (81.6%)
+Pulling devops-ci-cd-pipeline ... downloading (14.1%)
+Pulling devops-ci-cd-pipeline ... downloading (68.0%)
+Pulling devops-ci-cd-pipeline ... downloading (82.7%)
+Pulling devops-ci-cd-pipeline ... downloading (83.7%)
+Pulling devops-ci-cd-pipeline ... downloading (69.1%)
+Pulling devops-ci-cd-pipeline ... downloading (84.7%)
+Pulling devops-ci-cd-pipeline ... downloading (70.1%)
+Pulling devops-ci-cd-pipeline ... downloading (14.5%)
+Pulling devops-ci-cd-pipeline ... downloading (85.8%)
+Pulling devops-ci-cd-pipeline ... downloading (71.2%)
+Pulling devops-ci-cd-pipeline ... downloading (72.2%)
+Pulling devops-ci-cd-pipeline ... downloading (86.8%)
+Pulling devops-ci-cd-pipeline ... downloading (87.8%)
+Pulling devops-ci-cd-pipeline ... downloading (73.3%)
+Pulling devops-ci-cd-pipeline ... downloading (88.8%)
+Pulling devops-ci-cd-pipeline ... downloading (89.8%)
+Pulling devops-ci-cd-pipeline ... downloading (14.8%)
+Pulling devops-ci-cd-pipeline ... downloading (74.3%)
+Pulling devops-ci-cd-pipeline ... downloading (90.9%)
+Pulling devops-ci-cd-pipeline ... downloading (75.4%)
+Pulling devops-ci-cd-pipeline ... downloading (91.9%)
+Pulling devops-ci-cd-pipeline ... downloading (15.2%)
+Pulling devops-ci-cd-pipeline ... downloading (92.9%)
+Pulling devops-ci-cd-pipeline ... downloading (76.4%)
+Pulling devops-ci-cd-pipeline ... downloading (94.0%)
+Pulling devops-ci-cd-pipeline ... downloading (15.6%)
+Pulling devops-ci-cd-pipeline ... downloading (77.5%)
+Pulling devops-ci-cd-pipeline ... downloading (95.0%)
+Pulling devops-ci-cd-pipeline ... downloading (78.5%)
+Pulling devops-ci-cd-pipeline ... downloading (96.0%)
+Pulling devops-ci-cd-pipeline ... downloading (15.9%)
+Pulling devops-ci-cd-pipeline ... downloading (97.0%)
+Pulling devops-ci-cd-pipeline ... downloading (79.6%)
+Pulling devops-ci-cd-pipeline ... downloading (98.1%)
+Pulling devops-ci-cd-pipeline ... downloading (80.6%)
+Pulling devops-ci-cd-pipeline ... downloading (99.1%)
+Pulling devops-ci-cd-pipeline ... downloading (16.3%)
+Pulling devops-ci-cd-pipeline ... verifying checksum
+Pulling devops-ci-cd-pipeline ... download complete
+Pulling devops-ci-cd-pipeline ... extracting (1.1%)
+Pulling devops-ci-cd-pipeline ... extracting (8.9%)
+Pulling devops-ci-cd-pipeline ... downloading (81.6%)
+Pulling devops-ci-cd-pipeline ... extracting (11.1%)
+Pulling devops-ci-cd-pipeline ... extracting (17.7%)
+Pulling devops-ci-cd-pipeline ... extracting (23.3%)
+Pulling devops-ci-cd-pipeline ... extracting (27.7%)
+Pulling devops-ci-cd-pipeline ... downloading (16.7%)
+Pulling devops-ci-cd-pipeline ... extracting (32.1%)
+Pulling devops-ci-cd-pipeline ... downloading (82.7%)
+Pulling devops-ci-cd-pipeline ... extracting (35.5%)
+Pulling devops-ci-cd-pipeline ... extracting (48.8%)
+Pulling devops-ci-cd-pipeline ... extracting (56.5%)
+Pulling devops-ci-cd-pipeline ... extracting (58.7%)
+Pulling devops-ci-cd-pipeline ... downloading (17.1%)
+Pulling devops-ci-cd-pipeline ... extracting (62.1%)
+Pulling devops-ci-cd-pipeline ... downloading (83.7%)
+Pulling devops-ci-cd-pipeline ... extracting (67.6%)
+Pulling devops-ci-cd-pipeline ... extracting (76.5%)
+Pulling devops-ci-cd-pipeline ... extracting (78.7%)
+Pulling devops-ci-cd-pipeline ... extracting (80.9%)
+Pulling devops-ci-cd-pipeline ... extracting (83.1%)
+Pulling devops-ci-cd-pipeline ... downloading (17.4%)
+Pulling devops-ci-cd-pipeline ... downloading (84.8%)
+Pulling devops-ci-cd-pipeline ... extracting (85.3%)
+Pulling devops-ci-cd-pipeline ... extracting (89.8%)
+Pulling devops-ci-cd-pipeline ... extracting (92.0%)
+Pulling devops-ci-cd-pipeline ... downloading (85.8%)
+Pulling devops-ci-cd-pipeline ... extracting (94.2%)
+Pulling devops-ci-cd-pipeline ... downloading (86.9%)
+Pulling devops-ci-cd-pipeline ... downloading (17.8%)
+Pulling devops-ci-cd-pipeline ... extracting (95.3%)
+Pulling devops-ci-cd-pipeline ... downloading (87.9%)
+Pulling devops-ci-cd-pipeline ... extracting (96.4%)
+Pulling devops-ci-cd-pipeline ... extracting (99.7%)
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... downloading (88.9%)
+Pulling devops-ci-cd-pipeline ... downloading (18.2%)
+Pulling devops-ci-cd-pipeline ... pull complete
+Pulling devops-ci-cd-pipeline ... downloading (89.9%)
+Pulling devops-ci-cd-pipeline ... downloading (91.0%)
+Pulling devops-ci-cd-pipeline ... downloading (18.6%)
+Pulling devops-ci-cd-pipeline ... downloading (92.1%)
+Pulling devops-ci-cd-pipeline ... downloading (93.1%)
+Pulling devops-ci-cd-pipeline ... downloading (18.9%)
+Pulling devops-ci-cd-pipeline ... downloading (94.1%)
+Pulling devops-ci-cd-pipeline ... downloading (95.2%)
+Pulling devops-ci-cd-pipeline ... downloading (19.3%)
+Pulling devops-ci-cd-pipeline ... downloading (96.2%)
+Pulling devops-ci-cd-pipeline ... downloading (97.3%)
+Pulling devops-ci-cd-pipeline ... downloading (98.3%)
+Pulling devops-ci-cd-pipeline ... downloading (19.7%)
+Pulling devops-ci-cd-pipeline ... downloading (99.4%)
+Pulling devops-ci-cd-pipeline ... downloading (20.0%)
+Pulling devops-ci-cd-pipeline ... verifying checksum
+Pulling devops-ci-cd-pipeline ... download complete
+Pulling devops-ci-cd-pipeline ... downloading (20.4%)
+Pulling devops-ci-cd-pipeline ... downloading (20.8%)
+Pulling devops-ci-cd-pipeline ... downloading (21.2%)
+Pulling devops-ci-cd-pipeline ... downloading (21.5%)
+Pulling devops-ci-cd-pipeline ... downloading (21.9%)
+Pulling devops-ci-cd-pipeline ... downloading (22.3%)
+Pulling devops-ci-cd-pipeline ... downloading (22.6%)
+Pulling devops-ci-cd-pipeline ... downloading (23.0%)
+Pulling devops-ci-cd-pipeline ... downloading (23.4%)
+Pulling devops-ci-cd-pipeline ... downloading (23.8%)
+Pulling devops-ci-cd-pipeline ... downloading (24.1%)
+Pulling devops-ci-cd-pipeline ... downloading (24.5%)
+Pulling devops-ci-cd-pipeline ... downloading (24.9%)
+Pulling devops-ci-cd-pipeline ... downloading (25.3%)
+Pulling devops-ci-cd-pipeline ... downloading (25.6%)
+Pulling devops-ci-cd-pipeline ... downloading (26.0%)
+Pulling devops-ci-cd-pipeline ... downloading (26.4%)
+Pulling devops-ci-cd-pipeline ... downloading (26.8%)
+Pulling devops-ci-cd-pipeline ... downloading (27.1%)
+Pulling devops-ci-cd-pipeline ... downloading (27.5%)
+Pulling devops-ci-cd-pipeline ... downloading (27.9%)
+Pulling devops-ci-cd-pipeline ... downloading (28.2%)
+Pulling devops-ci-cd-pipeline ... downloading (28.6%)
+Pulling devops-ci-cd-pipeline ... downloading (29.0%)
+Pulling devops-ci-cd-pipeline ... downloading (29.4%)
+Pulling devops-ci-cd-pipeline ... downloading (29.7%)
+Pulling devops-ci-cd-pipeline ... downloading (30.1%)
+Pulling devops-ci-cd-pipeline ... downloading (30.5%)
+Pulling devops-ci-cd-pipeline ... downloading (30.9%)
+Pulling devops-ci-cd-pipeline ... downloading (31.2%)
+Pulling devops-ci-cd-pipeline ... downloading (31.6%)
+Pulling devops-ci-cd-pipeline ... downloading (32.0%)
+Pulling devops-ci-cd-pipeline ... downloading (32.4%)
+Pulling devops-ci-cd-pipeline ... downloading (32.7%)
+Pulling devops-ci-cd-pipeline ... downloading (33.1%)
+Pulling devops-ci-cd-pipeline ... downloading (33.5%)
+Pulling devops-ci-cd-pipeline ... downloading (33.8%)
+Pulling devops-ci-cd-pipeline ... downloading (34.2%)
+Pulling devops-ci-cd-pipeline ... downloading (34.6%)
+Pulling devops-ci-cd-pipeline ... downloading (35.0%)
+Pulling devops-ci-cd-pipeline ... downloading (35.3%)
+Pulling devops-ci-cd-pipeline ... downloading (35.7%)
+Pulling devops-ci-cd-pipeline ... downloading (36.1%)
+Pulling devops-ci-cd-pipeline ... downloading (36.5%)
+Pulling devops-ci-cd-pipeline ... downloading (36.8%)
+Pulling devops-ci-cd-pipeline ... downloading (37.2%)
+Pulling devops-ci-cd-pipeline ... downloading (37.6%)
+Pulling devops-ci-cd-pipeline ... downloading (37.9%)
+Pulling devops-ci-cd-pipeline ... downloading (38.3%)
+Pulling devops-ci-cd-pipeline ... downloading (38.7%)
+Pulling devops-ci-cd-pipeline ... downloading (39.1%)
+Pulling devops-ci-cd-pipeline ... downloading (39.4%)
+Pulling devops-ci-cd-pipeline ... downloading (39.8%)
+Pulling devops-ci-cd-pipeline ... downloading (40.2%)
+Pulling devops-ci-cd-pipeline ... downloading (40.6%)
+Pulling devops-ci-cd-pipeline ... downloading (40.9%)
+Pulling devops-ci-cd-pipeline ... downloading (41.3%)
+Pulling devops-ci-cd-pipeline ... downloading (41.7%)
+Pulling devops-ci-cd-pipeline ... downloading (42.0%)
+Pulling devops-ci-cd-pipeline ... downloading (42.4%)
+Pulling devops-ci-cd-pipeline ... downloading (42.8%)
+Pulling devops-ci-cd-pipeline ... downloading (43.2%)
+Pulling devops-ci-cd-pipeline ... downloading (43.5%)
+Pulling devops-ci-cd-pipeline ... downloading (43.9%)
+Pulling devops-ci-cd-pipeline ... downloading (44.3%)
+Pulling devops-ci-cd-pipeline ... downloading (44.7%)
+Pulling devops-ci-cd-pipeline ... downloading (45.0%)
+Pulling devops-ci-cd-pipeline ... downloading (45.4%)
+Pulling devops-ci-cd-pipeline ... downloading (45.8%)
+Pulling devops-ci-cd-pipeline ... downloading (46.1%)
+Pulling devops-ci-cd-pipeline ... downloading (46.5%)
+Pulling devops-ci-cd-pipeline ... downloading (46.9%)
+Pulling devops-ci-cd-pipeline ... downloading (47.3%)
+Pulling devops-ci-cd-pipeline ... downloading (47.6%)
+Pulling devops-ci-cd-pipeline ... downloading (48.0%)
+Pulling devops-ci-cd-pipeline ... downloading (48.4%)
+Pulling devops-ci-cd-pipeline ... downloading (48.8%)
+Pulling devops-ci-cd-pipeline ... downloading (49.1%)
+Pulling devops-ci-cd-pipeline ... downloading (49.5%)
+Pulling devops-ci-cd-pipeline ... downloading (49.9%)
+Pulling devops-ci-cd-pipeline ... downloading (50.2%)
+Pulling devops-ci-cd-pipeline ... downloading (50.6%)
+Pulling devops-ci-cd-pipeline ... downloading (51.0%)
+Pulling devops-ci-cd-pipeline ... downloading (51.4%)
+Pulling devops-ci-cd-pipeline ... downloading (51.7%)
+Pulling devops-ci-cd-pipeline ... downloading (52.1%)
+Pulling devops-ci-cd-pipeline ... downloading (52.5%)
+Pulling devops-ci-cd-pipeline ... downloading (52.9%)
+Pulling devops-ci-cd-pipeline ... downloading (53.2%)
+Pulling devops-ci-cd-pipeline ... downloading (53.6%)
+Pulling devops-ci-cd-pipeline ... downloading (54.0%)
+Pulling devops-ci-cd-pipeline ... downloading (54.4%)
+Pulling devops-ci-cd-pipeline ... downloading (54.7%)
+Pulling devops-ci-cd-pipeline ... downloading (55.1%)
+Pulling devops-ci-cd-pipeline ... downloading (55.5%)
+Pulling devops-ci-cd-pipeline ... downloading (55.8%)
+Pulling devops-ci-cd-pipeline ... downloading (56.2%)
+Pulling devops-ci-cd-pipeline ... downloading (56.6%)
+Pulling devops-ci-cd-pipeline ... downloading (57.0%)
+Pulling devops-ci-cd-pipeline ... downloading (57.3%)
+Pulling devops-ci-cd-pipeline ... downloading (57.7%)
+Pulling devops-ci-cd-pipeline ... downloading (58.1%)
+Pulling devops-ci-cd-pipeline ... downloading (58.4%)
+Pulling devops-ci-cd-pipeline ... downloading (58.8%)
+Pulling devops-ci-cd-pipeline ... downloading (59.2%)
+Pulling devops-ci-cd-pipeline ... downloading (59.6%)
+Pulling devops-ci-cd-pipeline ... downloading (59.9%)
+Pulling devops-ci-cd-pipeline ... downloading (60.3%)
+Pulling devops-ci-cd-pipeline ... downloading (60.7%)
+Pulling devops-ci-cd-pipeline ... downloading (61.1%)
+Pulling devops-ci-cd-pipeline ... downloading (61.4%)
+Pulling devops-ci-cd-pipeline ... downloading (61.8%)
+Pulling devops-ci-cd-pipeline ... downloading (62.2%)
+Pulling devops-ci-cd-pipeline ... downloading (62.6%)
+Pulling devops-ci-cd-pipeline ... downloading (62.9%)
+Pulling devops-ci-cd-pipeline ... downloading (63.3%)
+Pulling devops-ci-cd-pipeline ... downloading (63.7%)
+Pulling devops-ci-cd-pipeline ... downloading (64.0%)
+Pulling devops-ci-cd-pipeline ... downloading (64.4%)
+Pulling devops-ci-cd-pipeline ... downloading (64.8%)
+Pulling devops-ci-cd-pipeline ... downloading (65.2%)
+Pulling devops-ci-cd-pipeline ... downloading (65.5%)
+Pulling devops-ci-cd-pipeline ... downloading (65.9%)
+Pulling devops-ci-cd-pipeline ... downloading (66.3%)
+Pulling devops-ci-cd-pipeline ... downloading (66.7%)
+Pulling devops-ci-cd-pipeline ... downloading (67.0%)
+Pulling devops-ci-cd-pipeline ... downloading (67.4%)
+Pulling devops-ci-cd-pipeline ... downloading (67.8%)
+Pulling devops-ci-cd-pipeline ... downloading (68.1%)
+Pulling devops-ci-cd-pipeline ... downloading (68.5%)
+Pulling devops-ci-cd-pipeline ... downloading (68.9%)
+Pulling devops-ci-cd-pipeline ... downloading (69.3%)
+Pulling devops-ci-cd-pipeline ... downloading (69.6%)
+Pulling devops-ci-cd-pipeline ... downloading (70.0%)
+Pulling devops-ci-cd-pipeline ... downloading (70.4%)
+Pulling devops-ci-cd-pipeline ... downloading (70.8%)
+Pulling devops-ci-cd-pipeline ... downloading (71.1%)
+Pulling devops-ci-cd-pipeline ... downloading (71.5%)
+Pulling devops-ci-cd-pipeline ... downloading (71.9%)
+Pulling devops-ci-cd-pipeline ... downloading (72.2%)
+Pulling devops-ci-cd-pipeline ... downloading (72.6%)
+Pulling devops-ci-cd-pipeline ... downloading (73.0%)
+Pulling devops-ci-cd-pipeline ... downloading (73.4%)
+Pulling devops-ci-cd-pipeline ... downloading (73.7%)
+Pulling devops-ci-cd-pipeline ... downloading (74.1%)
+Pulling devops-ci-cd-pipeline ... downloading (74.5%)
+Pulling devops-ci-cd-pipeline ... downloading (74.9%)
+Pulling devops-ci-cd-pipeline ... downloading (75.2%)
+Pulling devops-ci-cd-pipeline ... downloading (75.6%)
+Pulling devops-ci-cd-pipeline ... downloading (76.0%)
+Pulling devops-ci-cd-pipeline ... downloading (76.3%)
+Pulling devops-ci-cd-pipeline ... downloading (76.7%)
+Pulling devops-ci-cd-pipeline ... downloading (77.1%)
+Pulling devops-ci-cd-pipeline ... downloading (77.5%)
+Pulling devops-ci-cd-pipeline ... downloading (77.8%)
+Pulling devops-ci-cd-pipeline ... downloading (78.2%)
+Pulling devops-ci-cd-pipeline ... downloading (78.6%)
+Pulling devops-ci-cd-pipeline ... downloading (78.9%)
+Pulling devops-ci-cd-pipeline ... downloading (79.3%)
+Pulling devops-ci-cd-pipeline ... downloading (79.7%)
+Pulling devops-ci-cd-pipeline ... downloading (80.1%)
+Pulling devops-ci-cd-pipeline ... downloading (80.4%)
+Pulling devops-ci-cd-pipeline ... downloading (80.8%)
+Pulling devops-ci-cd-pipeline ... downloading (81.2%)
+Pulling devops-ci-cd-pipeline ... downloading (81.6%)
+Pulling devops-ci-cd-pipeline ... downloading (81.9%)
+Pulling devops-ci-cd-pipeline ... downloading (82.3%)
+Pulling devops-ci-cd-pipeline ... downloading (82.7%)
+Pulling devops-ci-cd-pipeline ... downloading (83.0%)
+Pulling devops-ci-cd-pipeline ... downloading (83.4%)
+Pulling devops-ci-cd-pipeline ... downloading (83.8%)
+Pulling devops-ci-cd-pipeline ... downloading (84.2%)
+Pulling devops-ci-cd-pipeline ... downloading (84.5%)
+Pulling devops-ci-cd-pipeline ... downloading (84.9%)
+Pulling devops-ci-cd-pipeline ... downloading (85.3%)
+Pulling devops-ci-cd-pipeline ... downloading (85.7%)
+Pulling devops-ci-cd-pipeline ... downloading (86.0%)
+Pulling devops-ci-cd-pipeline ... downloading (86.4%)
+Pulling devops-ci-cd-pipeline ... downloading (86.8%)
+Pulling devops-ci-cd-pipeline ... downloading (87.2%)
+Pulling devops-ci-cd-pipeline ... downloading (87.5%)
+Pulling devops-ci-cd-pipeline ... downloading (87.9%)
+Pulling devops-ci-cd-pipeline ... downloading (88.3%)
+Pulling devops-ci-cd-pipeline ... downloading (88.6%)
+Pulling devops-ci-cd-pipeline ... downloading (89.0%)
+Pulling devops-ci-cd-pipeline ... downloading (89.4%)
+Pulling devops-ci-cd-pipeline ... downloading (89.8%)
+Pulling devops-ci-cd-pipeline ... downloading (90.1%)
+Pulling devops-ci-cd-pipeline ... downloading (90.5%)
+Pulling devops-ci-cd-pipeline ... downloading (90.9%)
+Pulling devops-ci-cd-pipeline ... downloading (91.3%)
+Pulling devops-ci-cd-pipeline ... downloading (91.6%)
+Pulling devops-ci-cd-pipeline ... downloading (92.0%)
+Pulling devops-ci-cd-pipeline ... downloading (92.4%)
+Pulling devops-ci-cd-pipeline ... downloading (92.8%)
+Pulling devops-ci-cd-pipeline ... downloading (93.1%)
+Pulling devops-ci-cd-pipeline ... downloading (93.5%)
+Pulling devops-ci-cd-pipeline ... downloading (93.9%)
+Pulling devops-ci-cd-pipeline ... downloading (94.2%)
+Pulling devops-ci-cd-pipeline ... downloading (94.6%)
+Pulling devops-ci-cd-pipeline ... downloading (95.0%)
+Pulling devops-ci-cd-pipeline ... downloading (95.4%)
+Pulling devops-ci-cd-pipeline ... downloading (95.7%)
+Pulling devops-ci-cd-pipeline ... downloading (96.1%)
+Pulling devops-ci-cd-pipeline ... downloading (96.5%)
+Pulling devops-ci-cd-pipeline ... downloading (96.9%)
+Pulling devops-ci-cd-pipeline ... downloading (97.2%)
+Pulling devops-ci-cd-pipeline ... downloading (97.6%)
+Pulling devops-ci-cd-pipeline ... downloading (98.0%)
+Pulling devops-ci-cd-pipeline ... downloading (98.4%)
+Pulling devops-ci-cd-pipeline ... downloading (98.7%)
+Pulling devops-ci-cd-pipeline ... downloading (99.1%)
+Pulling devops-ci-cd-pipeline ... downloading (99.5%)
+Pulling devops-ci-cd-pipeline ... downloading (99.8%)
+Pulling devops-ci-cd-pipeline ... verifying checksum
+Pulling devops-ci-cd-pipeline ... download complete
+Pulling devops-ci-cd-pipeline ... extracting (0.4%)
+Pulling devops-ci-cd-pipeline ... extracting (3.1%)
+Pulling devops-ci-cd-pipeline ... extracting (5.8%)
+Pulling devops-ci-cd-pipeline ... extracting (8.5%)
+Pulling devops-ci-cd-pipeline ... extracting (11.2%)
+Pulling devops-ci-cd-pipeline ... extracting (14.2%)
+Pulling devops-ci-cd-pipeline ... extracting (16.5%)
+Pulling devops-ci-cd-pipeline ... extracting (18.8%)
+Pulling devops-ci-cd-pipeline ... extracting (21.2%)
+Pulling devops-ci-cd-pipeline ... extracting (23.8%)
+Pulling devops-ci-cd-pipeline ... extracting (26.2%)
+Pulling devops-ci-cd-pipeline ... extracting (28.5%)
+Pulling devops-ci-cd-pipeline ... extracting (30.8%)
+Pulling devops-ci-cd-pipeline ... extracting (33.1%)
+Pulling devops-ci-cd-pipeline ... extracting (36.1%)
+Pulling devops-ci-cd-pipeline ... extracting (38.8%)
+Pulling devops-ci-cd-pipeline ... extracting (41.1%)
+Pulling devops-ci-cd-pipeline ... extracting (43.5%)
+Pulling devops-ci-cd-pipeline ... extracting (46.5%)
+Pulling devops-ci-cd-pipeline ... extracting (48.8%)
+Pulling devops-ci-cd-pipeline ... extracting (51.1%)
+Pulling devops-ci-cd-pipeline ... extracting (51.9%)
+Pulling devops-ci-cd-pipeline ... extracting (54.2%)
+Pulling devops-ci-cd-pipeline ... extracting (55.8%)
+Pulling devops-ci-cd-pipeline ... extracting (57.7%)
+Pulling devops-ci-cd-pipeline ... extracting (58.8%)
+Pulling devops-ci-cd-pipeline ... extracting (59.6%)
+Pulling devops-ci-cd-pipeline ... extracting (60.8%)
+Pulling devops-ci-cd-pipeline ... extracting (61.5%)
+Pulling devops-ci-cd-pipeline ... extracting (62.3%)
+Pulling devops-ci-cd-pipeline ... extracting (63.1%)
+Pulling devops-ci-cd-pipeline ... extracting (63.8%)
+Pulling devops-ci-cd-pipeline ... extracting (64.2%)
+Pulling devops-ci-cd-pipeline ... extracting (64.6%)
+Pulling devops-ci-cd-pipeline ... extracting (65.0%)
+Pulling devops-ci-cd-pipeline ... extracting (65.4%)
+Pulling devops-ci-cd-pipeline ... extracting (66.5%)
+Pulling devops-ci-cd-pipeline ... extracting (68.8%)
+Pulling devops-ci-cd-pipeline ... extracting (70.0%)
+Pulling devops-ci-cd-pipeline ... extracting (71.1%)
+Pulling devops-ci-cd-pipeline ... extracting (72.3%)
+Pulling devops-ci-cd-pipeline ... extracting (73.1%)
+Pulling devops-ci-cd-pipeline ... extracting (74.2%)
+Pulling devops-ci-cd-pipeline ... extracting (75.4%)
+Pulling devops-ci-cd-pipeline ... extracting (76.5%)
+Pulling devops-ci-cd-pipeline ... extracting (77.3%)
+Pulling devops-ci-cd-pipeline ... extracting (78.1%)
+Pulling devops-ci-cd-pipeline ... extracting (78.8%)
+Pulling devops-ci-cd-pipeline ... extracting (79.6%)
+Pulling devops-ci-cd-pipeline ... extracting (80.4%)
+Pulling devops-ci-cd-pipeline ... extracting (81.5%)
+Pulling devops-ci-cd-pipeline ... extracting (82.3%)
+Pulling devops-ci-cd-pipeline ... extracting (83.1%)
+Pulling devops-ci-cd-pipeline ... extracting (83.8%)
+Pulling devops-ci-cd-pipeline ... extracting (84.6%)
+Pulling devops-ci-cd-pipeline ... extracting (85.4%)
+Pulling devops-ci-cd-pipeline ... extracting (86.1%)
+Pulling devops-ci-cd-pipeline ... extracting (86.5%)
+Pulling devops-ci-cd-pipeline ... extracting (86.9%)
+Pulling devops-ci-cd-pipeline ... extracting (87.7%)
+Pulling devops-ci-cd-pipeline ... extracting (88.5%)
+Pulling devops-ci-cd-pipeline ... extracting (89.2%)
+Pulling devops-ci-cd-pipeline ... extracting (90.4%)
+Pulling devops-ci-cd-pipeline ... extracting (91.5%)
+Pulling devops-ci-cd-pipeline ... extracting (91.9%)
+Pulling devops-ci-cd-pipeline ... extracting (92.7%)
+Pulling devops-ci-cd-pipeline ... extracting (93.8%)
+Pulling devops-ci-cd-pipeline ... extracting (94.6%)
+Pulling devops-ci-cd-pipeline ... extracting (95.8%)
+Pulling devops-ci-cd-pipeline ... extracting (96.5%)
+Pulling devops-ci-cd-pipeline ... extracting (97.7%)
+Pulling devops-ci-cd-pipeline ... extracting (98.5%)
+Pulling devops-ci-cd-pipeline ... extracting (99.2%)
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... pull complete
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... pull complete
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... pull complete
+Pulling devops-ci-cd-pipeline ... extracting (1.1%)
+Pulling devops-ci-cd-pipeline ... extracting (23.1%)
+Pulling devops-ci-cd-pipeline ... extracting (47.3%)
+Pulling devops-ci-cd-pipeline ... extracting (76.7%)
+Pulling devops-ci-cd-pipeline ... extracting (98.7%)
+Pulling devops-ci-cd-pipeline ... extracting (100.0%)
+Pulling devops-ci-cd-pipeline ... pull complete
+Pulling devops-ci-cd-pipeline ... digest: sha256:6dd7c53cbc0034a3a6...
+Pulling devops-ci-cd-pipeline ... status: downloaded newer image fo...
+Pulling devops-ci-cd-pipeline ... done
+Stopping devops-ci-cd-pipeline_devops-ci-cd-pipeline_1 ... 
+Stopping devops-ci-cd-pipeline_devops-ci-cd-pipeline_1 ... done
+Removing devops-ci-cd-pipeline_devops-ci-cd-pipeline_1 ... 
+Removing devops-ci-cd-pipeline_devops-ci-cd-pipeline_1 ... done
+Removing network devops-ci-cd-pipeline_default
+Creating network "devops-ci-cd-pipeline_default" with the default driver
+Creating devops-ci-cd-pipeline_devops-ci-cd-pipeline_1 ... 
+Creating devops-ci-cd-pipeline_devops-ci-cd-pipeline_1 ... done
+[Pipeline] }
+$ ssh-agent -k
+unset SSH_AUTH_SOCK;
+unset SSH_AGENT_PID;
+echo Agent pid 11982 killed;
+[ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
