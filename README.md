@@ -71,9 +71,23 @@ The pipeline can be triggered automatically on changes to the main branch (githu
   - Nexus credentials for artifact deployment
 
 - **Tools installed on Jenkins VM:**
-  - Java 17 (OpenJDK)
-  - Maven 3.9.11
-  - Docker (to build and push images)
+  - Java 17 (Added to System tools)
+  - Maven 3.9.11 (Added to System tools)
+  - Docker
+    
+ - **Installed Plugins:**
+  - Git, GitHub
+  - Docker Pipeline
+  - SSH Agent Plugin
+  - SonarQube Scanner
+  - Config File Provider
+    
+ - **Jenkins Global Environment Variables :**
+  - STAGING_VM: user@public-ip
+  - NEXUS_SNAPSHOT_URL: http://nexus-server/repository/maven-snapshots/
+    
+ - **Config File Management:**
+  - maven-settings: Content -> settings.xml file
 
 ---
 
