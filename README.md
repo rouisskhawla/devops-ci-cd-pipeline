@@ -57,7 +57,7 @@ The pipeline is configured to run on multiple VMs:
 - **docker-compose.yml:** Defines the deployment configuration on the staging environment.
 
 **Triggering:**  
-The pipeline can be triggered automatically on changes to the main branch or manually via Jenkins.
+The pipeline can be triggered automatically on changes to the main branch (github webhook enabled) or manually via Jenkins.
 
 ---
 
