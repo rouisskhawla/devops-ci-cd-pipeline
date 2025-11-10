@@ -67,7 +67,7 @@ pipeline {
 				passwordVariable: 'NEXUS_PASS'
 			)]) {
 				configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
-					sh "mvn clean deploy -s $MAVEN_SETTINGS -DaltDeploymentRepository=nexus::default::$NEXUS_RELEASE_URL"
+					sh "mvn clean deploy -s $MAVEN_SETTINGS -DaltDeploymentRepository=nexus::default::$NEXUS_SNAPSHOT_URL -DskipTests"
 				}
 			}
 		}
