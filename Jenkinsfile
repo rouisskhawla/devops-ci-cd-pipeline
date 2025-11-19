@@ -16,7 +16,7 @@ pipeline {
           $class: 'GitSCM',
           branches: [[name: 'main']],
           userRemoteConfigs: [[
-            url: 'git@github.com:rouisskhawla/devops-ci-cd-pipeline.git',
+            url: 'git@github.com:rouisskhawla/devops-ci-cd-pipeline-jenkins.git',
             credentialsId: 'github'
           ]]
         ])
